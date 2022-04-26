@@ -1,0 +1,34 @@
+{
+    "python.pythonPath": "/opt/homebrew/bin/python3",
+    "python.languageServer": "Pylance",
+    
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "files.exclude": {
+      "**/*.pyc": true
+    },
+    "python.analysis.extraPaths": [
+      "${workspaceRoot}/addons/",
+      "/Users/hpascual/desarrollo/ODOO_Base/v15e",
+      "/Users/hpascual/desarrollo/ODOO_Base/v15e"
+    ],
+  
+    "python.autoComplete.extraPaths": [
+      "${workspaceRoot}/addons/",
+      "/Users/hpascual/desarrollo/ODOO_Base/v15e",
+      "/Users/hpascual/desarrollo/ODOO_Base/v15e"
+    ],
+  
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "cSpell.language": "es,en",
+    "cSpell.enableFiletypes": [
+      "!python"
+    ],
+    "sqltools.connections": [],
+    
+  }
+  
+  

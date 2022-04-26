@@ -1,0 +1,12 @@
+id,name,code,implementation,active,prefix,padding,number_increment,use_date_range
+ncf_credito_fiscal,Crédito Fiscal,B01,standard,True,B01,8,1,True
+ncf_consumo,Consumo,B02,standard,True,B02,8,1,True
+ncf_nota_debito,Nota de Débito,B03,standard,True,B03,8,1,True
+ncf_nota_credito,Nota de Crédito,B04,standard,True,B04,8,1,True
+ncf_compra,Comprobante de Compra,B11,standard,True,B11,8,1,True
+ncf_unico_ingreso,Único Ingreso,B12,standard,True,B12,8,1,True
+ncf_gasto_menor,Gasto Menor,B13,standard,True,B13,8,1,True
+ncf_regimen_especial,Régimen Especial,B14,standard,True,B14,8,1,True
+ncf_gubernamental,Gubernamental,B15,standard,True,B15,8,1,True
+ncf_exportacion,Exportación,B16,standard,True,B16,8,1,True
+ncf_pago_exterior,Pago al Exterior,B17,standard,True,B17,8,1,True

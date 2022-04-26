@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="l10n_do_account_bank_statement_import_bpd" model="ir.ui.view">
+        <field name="name">Importar Estados Bancarios de Banco BHD León en formato CSV</field>
+        <field name="model">account.bank.statement.import</field>
+        <field name="inherit_id" ref="account_bank_statement_import.account_bank_statement_import_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//ul[@id='statement_format']" position="inside">
+                <li>Estados Bancarios de Banco BHD León (CSV)</li>
+            </xpath>
+        </field>
+    </record>
+</odoo>

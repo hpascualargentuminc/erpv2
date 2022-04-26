@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Formulario de Cotización -->
+    <record id="custom_sale_order_form" model="ir.ui.view">
+		<field name="name">custom.sale.order.form</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+			<!-- Orden de Compra del Cliente -->
+			<xpath expr="//field[@name='partner_id']" position="after">
+				<field name="partner_purchase_order"/>
+			</xpath>
+			<!-- Monto Base -->
+			<xpath expr="//field[@name='tax_totals_json']" position="after">
+				<field name="company_currency_id" invisible="1"/>
+				<field name="base_amount_untaxed" readonly="1" widget="monetary" options="{'currency_field':'company_currency_id'}"/>
+			</xpath>
+			<!-- Botón a Oportunidad -->
+			<xpath expr="//button[@name='preview_sale_order']" position="after">
+				<button name="action_preview_lead"
+					type="object"
+					class="oe_stat_button"
+					icon="fa-pencil-square-o">
+					<div class="o_field_widget o_stat_info">
+						<span class="o_stat_text">Oportunidad</span>
+					</div>
+                </button>
+			</xpath>
+        </field>
+    </record>
+
+	<!-- Vista de Lista de Cotizaciones -->
+	<record id="custom_view_quotation_tree" model="ir.ui.view">
+            <field name="name">custom.view.quotation.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='activity_ids']" position="after">
+                    <field name="base_amount_untaxed" sum="Total Monto Base" widget="monetary"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>

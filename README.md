@@ -1,1 +1,1 @@
-# erpv2
+# odoo-argentum
