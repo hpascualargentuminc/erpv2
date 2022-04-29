@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="aginc_VALHORA" model="hr.salary.rule.category">
+        <field name="name">Valor Hora</field>
+        <field name="code">VALHORA</field>
+    </record>
+
+    <record id="aginc_CALC" model="hr.salary.rule.category">
+        <field name="name">Calculo</field>
+        <field name="code">CALC</field>
+    </record>
+
+    <record id="aginc_HEXTRA" model="hr.salary.rule.category">
+        <field name="name">Horas Extra</field>
+        <field name="code">HEXTRA</field>
+    </record>
+
+    <record id="aginc_TSS_REG" model="hr.salary.rule.category">
+        <field name="name">Descuentos TSS</field>
+        <field name="code">TSS_REG</field>
+    </record>
+
+    <record id="aginc_DESAH" model="hr.salary.rule.category">
+        <field name="name">Desahucio</field>
+        <field name="code">DESAH</field>
+    </record>
+
+    <record id="aginc_VAC" model="hr.salary.rule.category">
+        <field name="name">Vacaciones</field>
+        <field name="code">VAC</field>
+    </record>
+
+    <record id="aginc_BONA" model="hr.salary.rule.category">
+        <field name="name">Bono Anual</field>
+        <field name="code">BONA</field>
+    </record>
+
+    <record id="aginc_ISRFAV" model="hr.salary.rule.category">
+        <field name="name">Saldo ISR a Favor</field>
+        <field name="code">ISRFAV</field>
+    </record>
+</odoo>

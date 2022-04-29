@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Structure Type -->
+    <record id="aginc_structure_type_regular_employee" model="hr.payroll.structure.type">
+        <field name="name">Empleado Regular</field>
+        <field name="country_id" eval="False"/>
+        <field name="default_schedule_pay">bi-weekly</field>
+    </record>
+    <record id="aginc_structure_type_foreign" model="hr.payroll.structure.type">
+        <field name="name">Extranjero</field>
+        <field name="country_id" eval="False"/>
+        <field name="default_schedule_pay">bi-weekly</field>
+    </record>
+</odoo>

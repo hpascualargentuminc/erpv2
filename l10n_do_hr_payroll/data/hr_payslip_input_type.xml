@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="hr_payroll.input_deduction" model="hr.payslip.input.type">
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+
+        </record>
+
+        <record id="hr_payroll.input_reimbursement" model="hr.payslip.input.type">
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="hr_payroll.input_attachment_salary" model="hr.payslip.input.type">
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="hr_payroll.input_assignment_salary" model="hr.payslip.input.type">
+             <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_bonu_payroll')
+            ])]"/>
+        </record>
+
+        <record id="hr_payroll.input_child_support" model="hr.payslip.input.type">
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_horas_extra_l1" model="hr.payslip.input.type">
+            <field name="name">Horas Extra L1</field>
+            <field name="code">HEXT35</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_horas_extra_l2" model="hr.payslip.input.type">
+            <field name="name">Horas Extra L2</field>
+            <field name="code">HEXT100</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_horas_extra_nocturna" model="hr.payslip.input.type">
+            <field name="name">Horas Extra Nocturna</field>
+            <field name="code">HEXTNOCT</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_vacaciones" model="hr.payslip.input.type">
+            <field name="name">Vacaciones</field>
+            <field name="code">VAC_REG</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_horas_no_trabajadas" model="hr.payslip.input.type">
+            <field name="name">Horas No Trabajadas</field>
+            <field name="code">NTRA_REG</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_comisiones" model="hr.payslip.input.type">
+            <field name="name">Comisiones</field>
+            <field name="code">COM_REG</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_prima_tss" model="hr.payslip.input.type">
+            <field name="name">Prima TSS</field>
+            <field name="code">TSS_PRIM</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_horas_dias_feriados" model="hr.payslip.input.type">
+            <field name="name">Horas en dias Feriados</field>
+            <field name="code">HFER_REG</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_cesantia" model="hr.payslip.input.type">
+            <field name="name">Cesantia</field>
+            <field name="code">CESANT</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_salario_navidad" model="hr.payslip.input.type">
+            <field name="name">Salario Navidad</field>
+            <field name="code">SALN</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_deduccion_2" model="hr.payslip.input.type">
+            <field name="name">Deducción 2</field>
+            <field name="code">DEDUCTION2</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_deduccion_3" model="hr.payslip.input.type">
+            <field name="name">Deducción 3</field>
+            <field name="code">DEDUCTION3</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_asig_ad_en_salario_2" model="hr.payslip.input.type">
+            <field name="name">Asignación Adicional en el Salario 2</field>
+            <field name="code">ASSIG_SALARY2</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+           <record id="input_asig_ad_en_salario_3" model="hr.payslip.input.type">
+            <field name="name">Asignación Adicional en el Salario 3</field>
+            <field name="code">ASSIG_SALARY3</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_foreign_payroll'),
+                ref('l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_bono_anual" model="hr.payslip.input.type">
+            <field name="name">Bono Anual</field>
+            <field name="code">BONANUAL</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_bonu_payroll')
+            ])]"/>
+        </record>
+
+        <record id="input_saldo_isr_a_favor" model="hr.payslip.input.type">
+            <field name="name">Saldo ISR a Favor</field>
+            <field name="code">ISR_FAVOR</field>
+            <field name="struct_ids" eval="[(6, 0, [
+                ref('l10n_do_hr_payroll.aginc_structure_regular_payroll')
+            ])]"/>
+        </record>
+ 
+</odoo>

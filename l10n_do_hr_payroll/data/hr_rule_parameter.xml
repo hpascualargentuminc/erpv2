@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- afp_ret_empleado -->
+    <record id="aginc_rule_parameter_afp_ret_empleado" model="hr.rule.parameter">
+        <field name="name">AFP Retencion Empleado</field>
+        <field name="code">afp_ret_empleado</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_afp_ret_empleado" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_afp_ret_empleado" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0.0287</field>
+    </record>
+
+    <!-- sfs_ret_empleado -->
+    <record id="aginc_rule_parameter_sfs_ret_empleado" model="hr.rule.parameter">
+        <field name="name">SFS Retención Empleado</field>
+        <field name="code">sfs_ret_empleado</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_sfs_ret_empleado" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_sfs_ret_empleado" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0.0304</field>
+    </record>
+
+    <!-- isr_mont_escala_1 -->
+    <record id="aginc_rule_parameter_isr_mont_escala_1" model="hr.rule.parameter">
+        <field name="name">ISR Monto Maximo Escala 1</field>
+        <field name="code">isr_mont_escala_1</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_mont_escala_1" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_mont_escala_1" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">416220.00</field>
+    </record>
+
+    <!-- isr_mont_escala_2 -->
+    <record id="aginc_rule_parameter_isr_mont_escala_2" model="hr.rule.parameter">
+        <field name="name">ISR Monto Maximo Escala 2</field>
+        <field name="code">isr_mont_escala_2</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_mont_escala_2" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_mont_escala_2" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">416220.01</field>
+    </record>
+
+        <!-- isr_mont_escala_3 -->
+    <record id="aginc_rule_parameter_isr_mont_escala_3" model="hr.rule.parameter">
+        <field name="name">ISR Monto Maximo Escala 3</field>
+        <field name="code">isr_mont_escala_3</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_mont_escala_3" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_mont_escala_3" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">624329.01</field>
+    </record>
+
+    <!-- isr_mont_escala_4 -->
+    <record id="aginc_rule_parameter_isr_mont_escala_4" model="hr.rule.parameter">
+        <field name="name">ISR Monto Maximo Escala 4</field>
+        <field name="code">isr_mont_escala_4</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_mont_escala_4" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_mont_escala_4" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">867123.01</field>
+    </record>
+
+    <!-- isr_porc_escala_1 -->
+    <record id="aginc_rule_parameter_isr_porc_escala_1" model="hr.rule.parameter">
+        <field name="name">ISR % Escala 1</field>
+        <field name="code">isr_porc_escala_1</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_porc_escala_1" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_porc_escala_1" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0</field>
+    </record>
+
+    <!-- isr_porc_escala_2 -->
+    <record id="aginc_rule_parameter_isr_porc_escala_2" model="hr.rule.parameter">
+        <field name="name">ISR % Escala 2</field>
+        <field name="code">isr_porc_escala_2</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_porc_escala_2" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_porc_escala_2" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0.15</field>
+    </record>
+
+    <!-- isr_porc_escala_3 -->
+    <record id="aginc_rule_parameter_isr_porc_escala_3" model="hr.rule.parameter">
+        <field name="name">ISR % Escala 3</field>
+        <field name="code">isr_porc_escala_3</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_porc_escala_3" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_porc_escala_3" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0.20</field>
+    </record>
+
+    <!-- isr_porc_escala_4 -->
+    <record id="aginc_rule_parameter_isr_porc_escala_4" model="hr.rule.parameter">
+        <field name="name">ISR % Escala 4</field>
+        <field name="code">isr_porc_escala_4</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_porc_escala_4" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_porc_escala_4" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">0.25</field>
+    </record>
+
+        <!-- afp_sal_maximo -->
+    <record id="aginc_rule_parameter_afp_sal_maximo" model="hr.rule.parameter">
+        <field name="name">AFP Tope Maximo de Contribución</field>
+        <field name="code">afp_sal_maximo</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_afp_sal_maximo" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_afp_sal_maximo" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">325250</field>
+    </record>
+
+    <!-- sfs_sal_maximo -->
+    <record id="aginc_rule_parameter_sfs_sal_maximo" model="hr.rule.parameter">
+        <field name="name">SFS Tope Maximo de Contribución</field>
+        <field name="code">sfs_sal_maximo</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_sfs_sal_maximo" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_sfs_sal_maximo" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">162625</field>
+    </record>
+
+    <!-- tss_sal_minimo -->
+    <record id="aginc_rule_parameter_tss_sal_minimo" model="hr.rule.parameter">
+        <field name="name">TSS Salario Minimo Base</field>
+        <field name="code">tss_sal_minimo</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_tss_sal_minimo" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_tss_sal_minimo" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">1</field>
+    </record>
+
+   <!-- isr_tasa_base_escala_3 -->
+    <record id="aginc_rule_parameter_isr_tasa_base_escala_3" model="hr.rule.parameter">
+        <field name="name">ISR Tasa Base Nivel 3</field>
+        <field name="code">isr_tasa_base_escala_3</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_tasa_base_escala_3" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_tasa_base_escala_3" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">31216</field>
+    </record>
+
+       <!-- isr_tasa_base_escala_4 -->
+    <record id="aginc_rule_parameter_isr_tasa_base_escala_4" model="hr.rule.parameter">
+        <field name="name">ISR Tasa Base Nivel 4</field>
+        <field name="code">isr_tasa_base_escala_4</field>
+    </record>
+
+    <record id="aginc_rule_parameter_value_isr_tasa_base_escala_4" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="aginc_rule_parameter_isr_tasa_base_escala_4" />
+        <field name="date_from">2022-01-01</field>
+        <field name="parameter_value">79776</field>
+    </record>
+
+    
+</odoo>

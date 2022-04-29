@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="hr_contract_view_form" model="ir.ui.view">
+		<field name="name">hr.contract.view.form.inherit</field>
+		<field name="model">hr.contract</field>
+		<field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//group[@name='salary_info']" position="after">
+				<group name="extra_hours_info">
+					<group name="extra_hour_left">
+						<field name="base_hour_price" />
+					</group>
+					<group name="extra_hour_right">
+						<field name="day_level1_extra_hour_price" />
+						<field name="day_level2_extra_hour_price" />
+						<field name="night_extra_hour_price" />
+					</group>
+				</group>
+			</xpath>
+		</field>
+	</record>
+
+
+</odoo>

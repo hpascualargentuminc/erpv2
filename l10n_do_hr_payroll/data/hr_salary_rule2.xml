@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Reglas salariales para la estructura de Nomina Extranjeros (20) -->
+    <record id="aginc_hr_salary_rule_foreign_valor_hora" model="hr.salary.rule">
+        <field name="name">Valor Hora</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_CALC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">VALHORAMES</field>
+        <field name="sequence">100</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.base_hour_price</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_primera_quincena" model="hr.salary.rule">
+        <field name="name">Es primera quincena?</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_CALC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">PRIMQ</field>
+        <field name="sequence">100</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = 0 if payslip.date_from.day > 15 else 1</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_salario_basico_total" model="hr.salary.rule">
+        <field name="name">Salario básico total</field>
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">BASIC</field>
+        <field name="sequence">200</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.wage / 2
+result_name = 'Salario Primera Quincena' if PRIMQ else 'Salario Segunda Quincena'</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_comisiones" model="hr.salary.rule">
+        <field name="name">Comisiones</field>
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">COM_REG</field>
+        <field name="sequence">200</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.COM_REG</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.COM_REG.amount
+result_name = inputs.COM_REG.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_horas_no_trabajadas" model="hr.salary.rule">
+        <field name="name">Horas No Trabajadas</field>
+        <field name="category_id" ref="hr_payroll.BASIC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">NTRA_REG</field>
+        <field name="sequence">200</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.NTRA_REG</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result_qty = -inputs.NTRA_REG.amount
+result = VALHORAMES
+result_name = inputs.NTRA_REG.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_vacaciones" model="hr.salary.rule">
+        <field name="name">Vacaciones</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_VAC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">VAC_REG</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.VAC_REG</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.VAC_REG.amount
+result_name = inputs.VAC_REG.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_horas_dias_feriados" model="hr.salary.rule">
+        <field name="name">Horas Dias Feriados</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_HEXTRA"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">HFER_REG</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.HFER_REG</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result_qty = inputs.HFER_REG.amount
+result = VALHORAMES
+result_name = inputs.HFER_REG.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_horas_extra_l1" model="hr.salary.rule">
+        <field name="name">Horas Extra L1</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_HEXTRA"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">HEXTRA35</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.HEXT35</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result =  contract.day_level1_extra_hour_price
+result_qty = inputs.HEXT35.amount
+result_name = inputs.HEXT35.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_horas_extra_l2" model="hr.salary.rule">
+        <field name="name">Horas Extra L2</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_HEXTRA"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">HEXTRA100</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.HEXT100</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result =  contract.day_level2_extra_hour_price
+result_qty = inputs.HEXT100.amount
+result_name = inputs.HEXT100.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_horas_extra_nocturnas" model="hr.salary.rule">
+        <field name="name">Horas Extra Nocturnas</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_HEXTRA"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">HEXTRANOCT</field>
+        <field name="sequence">300</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.HEXTNOCT</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.night_extra_hour_price 
+result_qty =  inputs.HEXTNOCT.amount
+result_name = inputs.HEXTNOCT.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_reembolso" model="hr.salary.rule">
+        <field name="name">Reembolso</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">REIMBURSEMENT</field>
+        <field name="sequence">400</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.REIMBURSEMENT</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.REIMBURSEMENT.amount
+result_name = inputs.REIMBURSEMENT.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_asig_adicional_salario" model="hr.salary.rule">
+        <field name="name">Asignación adicional Salario</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">ASSIG_SALARY</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ASSIG_SALARY</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.ASSIG_SALARY.amount
+result_name = inputs.ASSIG_SALARY.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_asig_adicional_salario2" model="hr.salary.rule">
+        <field name="name">Asignación adicional Salario 2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">ASSIG_SALARY2</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ASSIG_SALARY2</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.ASSIG_SALARY2.amount
+result_name = inputs.ASSIG_SALARY2.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_asig_adicional_salario3" model="hr.salary.rule">
+        <field name="name">Asignación adicional Salario 3</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">ASSIG_SALARY3</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ASSIG_SALARY3</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.ASSIG_SALARY3.amount
+result_name = inputs.ASSIG_SALARY3.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_descuentos_programados" model="hr.salary.rule">
+        <field name="name">Descuentos Programados</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">ATTACH_SALARY</field>
+        <field name="sequence">1000</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ATTACH_SALARY and not PRIMQ</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.ATTACH_SALARY.amount
+result_name = inputs.ATTACH_SALARY.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_deduccion" model="hr.salary.rule">
+        <field name="name">Deducción</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">DEDUCTION</field>
+        <field name="sequence">1100</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.DEDUCTION</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.DEDUCTION.amount
+result_name = inputs.DEDUCTION.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_deduccion2" model="hr.salary.rule">
+        <field name="name">Deducción 2</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">DEDUCTION2</field>
+        <field name="sequence">1100</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.DEDUCTION2</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.DEDUCTION2.amount
+result_name = inputs.DEDUCTION2.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_deduccion3" model="hr.salary.rule">
+        <field name="name">Deducción 3</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">DEDUCTION3</field>
+        <field name="sequence">1100</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.DEDUCTION3</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.DEDUCTION3.amount
+result_name = inputs.DEDUCTION3.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_bruto" model="hr.salary.rule">
+        <field name="name">Bruto</field>
+        <field name="category_id" ref="hr_payroll.GROSS"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">GROSS</field>
+        <field name="sequence">1000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.HEXTRA</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_foreign_salario_neto" model="hr.salary.rule">
+        <field name="name">Salario neto</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_foreign_payroll"/>
+        <field name="code">NET</field>
+        <field name="sequence">2000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED + categories.HEXTRA</field>
+    </record>
+
+    <!-- Reglas salariales para la estructura de Desahucio por parte del Empleado (2) -->
+    <record id="aginc_hr_salary_rule_DPPDE_Deduccion" model="hr.salary.rule">
+        <field name="name">Deducción</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employee_payroll"/>
+        <field name="code">DEDUCTION</field>
+        <field name="sequence">1000</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.DEDUCTION</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.DEDUCTION.amount
+result_name = inputs.DEDUCTION.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_DPPDE_salario_neto" model="hr.salary.rule">
+        <field name="name">Salario neto</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employee_payroll"/>
+        <field name="code">NET</field>
+        <field name="sequence">2000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.DED + categories.HEXTRA + categories.TSS</field>
+    </record>
+
+    <!-- Reglas salariales para la estructura de Desahucio por parte del Empleador (8) -->
+    
+    <record id="aginc_hr_salary_rule_DPPDER_suma_ultimos_12_salarios" model="hr.salary.rule">
+        <field name="name">Sumatoria ultimos 12 Salarios</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_CALC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">SUM12SAL</field>
+        <field name="sequence">100</field>
+        <field name="appears_on_payslip">False</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result =  payslip.sum_category('BASIC' , payslip.date_from, payslip.date_to)</field>
+    </record>
+    
+    <record id="aginc_hr_salary_rule_DPPDER_promedio_mensual" model="hr.salary.rule">
+        <field name="name">Promedio Mensual</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_CALC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">PROMM</field>
+        <field name="sequence">200</field>
+        <field name="appears_on_payslip">False</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = SUM12SAL / 12</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_DPPDER_promedio_dia" model="hr.salary.rule">
+        <field name="name">Promedio Dia</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_CALC"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">PROMD</field>
+        <field name="sequence">300</field>
+        <field name="appears_on_payslip">False</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = PROMM / 23.83</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_DPPDER_cesentia" model="hr.salary.rule">
+        <field name="name">Cesentia</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_DESAH"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">CESANT</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.CESANT</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = result = inputs.CESANT.amount
+result_name = result = inputs.CESANT.name</field>
+    </record>
+    
+    <record id="aginc_hr_salary_rule_DPPDER_vacaciones" model="hr.salary.rule">
+        <field name="name">Vacaciones</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_DESAH"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">VAC_REG</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.VAC_REG</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.VAC_REG.amount
+result_name = inputs.VAC_REG.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_DPPDER_salario_navidad" model="hr.salary.rule">
+        <field name="name">Salario de Navidad</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_DESAH"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">SALNAV</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.SALN</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result =  inputs.SALN.amount
+result_name =  inputs.SALN.name</field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_DPPDER_deduccion" model="hr.salary.rule">
+        <field name="name">Deducción</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">DEDUCTION</field>
+        <field name="sequence">1000</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.DEDUCTION</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = -inputs.DEDUCTION.amount
+result_name = inputs.DEDUCTION.name</field>
+    </record>    
+
+    <record id="aginc_hr_salary_rule_DPPDER_salario_neto" model="hr.salary.rule">
+        <field name="name">Salario neto</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_eviction_employer_payroll"/>
+        <field name="code">NET</field>
+        <field name="sequence">2000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.DESAH + categories.DED</field>
+    </record>
+
+    <!-- Reglas salariales para la estructura de BONOS (4) -->
+
+    <record id="aginc_hr_salary_rule_Bono_Bono" model="hr.salary.rule">
+        <field name="name">Bono</field>
+        <field name="category_id" ref="l10n_do_hr_payroll.aginc_BONA"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_bonu_payroll"/>
+        <field name="code">BONA</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.BONANUAL</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.BONANUAL.amount
+result_name = inputs.BONANUAL.name
+        </field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_Bono_asignacion_adicional_salario" model="hr.salary.rule">
+        <field name="name">Asignación adicional Salario</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_bonu_payroll"/>
+        <field name="code">ASSIG_SALARY</field>
+        <field name="sequence">500</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.ASSIG_SALARY</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = inputs.ASSIG_SALARY.amount
+result_name = inputs.ASSIG_SALARY.name
+        </field>
+    </record>
+
+    <record id="aginc_hr_salary_rule_Bono_bruto" model="hr.salary.rule">
+        <field name="name">Bruto</field>
+        <field name="category_id" ref="hr_payroll.GROSS"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_bonu_payroll"/>
+        <field name="code">GROSS</field>
+        <field name="sequence">1000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BONA + categories.ALW</field>
+    </record>
+    
+    <record id="aginc_hr_salary_rule_Bono_salario_neto" model="hr.salary.rule">
+        <field name="name">Salario neto</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="struct_id" ref="l10n_do_hr_payroll.aginc_structure_bonu_payroll"/>
+        <field name="code">NET</field>
+        <field name="sequence">2000</field>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = categories.BONA + categories.ALW</field>
+    </record>
+    
+</odoo>
