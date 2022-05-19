@@ -6,7 +6,7 @@
     "category": "Base",
     "version": "15",
     # any module necessary for this one to work correctly
-    "depends": ["base", "sale_management", "sale_crm", "account", "account_accountant"],
+    "depends": ["base", "sale_management", "sale_crm", "account", "account_accountant", "l10n_do_accounting"],
     # always loaded
     "data": [
         'views/sale_order_views.xml',
