@@ -60,7 +60,9 @@
     </template>
 
     <template id="external_layout_standard_argentum" inherit_id="web.external_layout_standard">
-        <xpath expr='//div[@name="moto"]' position="replace">
+        <xpath expr='//div[1]/div[3]' position="replace">
+        </xpath>
+        <xpath expr='//div[2]' position="replace">
         </xpath>
     </template>
 
