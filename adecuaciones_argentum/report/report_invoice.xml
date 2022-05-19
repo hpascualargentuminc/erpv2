@@ -7,10 +7,6 @@
             <attribute name="style">font-size: 9pt;</attribute>  
         </xpath>
 
-        <xpath expr="//span[@t-if='o.company_id.vat']" position="after">
-            <strong>ESTO ES UNA PRUEBA</strong>  
-        </xpath>
-
         <!-- Se cambia el espaciado en cada renglón, para que entren más por página. -->
         <!-- Descripción -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[1]" position="attributes">
