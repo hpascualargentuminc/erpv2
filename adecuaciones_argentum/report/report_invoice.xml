@@ -4,7 +4,7 @@
     <template id="report_invoice_document_inherited_argentum" inherit_id="l10n_do_accounting.report_invoice_document_inherited" primary="True">
         <!-- Tamaño de letra por defecto -->
         <xpath expr="//div[@class='page']" position="attributes">
-            <attribute name="style">font-size: 6pt;</attribute>  
+            <attribute name="style">font-size: 9pt;</attribute>  
         </xpath>
 
         <!-- Se cambia el espaciado en cada renglón, para que entren más por página. -->
@@ -44,5 +44,20 @@
             <attribute name="style">padding: 1px 1px 1px 3px;</attribute>
         </xpath>
     </template>
+
+    <template id="report_invoice_argentum" inherit_id="account.report_invoice">
+        <xpath expr='//t[@t-call="account.report_invoice_document"]' position="after">
+            <t t-if="o._get_name_invoice_report() == 'adecuaciones_argentum.report_invoice_document_inherited_argentum'"
+               t-call="adecuaciones_argentum.report_invoice_document_inherited_argentum" t-lang="lang"/>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_with_payments_argentum" inherit_id="account.report_invoice_with_payments">
+        <xpath expr='//t[@t-call="account.report_invoice_document"]' position="after">
+            <t t-if="o._get_name_invoice_report() == 'adecuaciones_argentum.report_invoice_document_inherited_argentum'"
+               t-call="adecuaciones_argentum.report_invoice_document_inherited_argentum" t-lang="lang"/>
+        </xpath>
+    </template>
+
 </odoo>
         
