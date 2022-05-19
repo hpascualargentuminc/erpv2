@@ -11,3 +11,9 @@ class AccountMove(models.Model):
     _inherit = "account.move"
     
     partner_purchase_order = fields.Char(string="O/C Cliente")
+    
+    def _get_name_invoice_report(self):
+        self.ensure_one()
+        if self.l10n_latam_use_documents and self.country_code == "DO":
+            return "adecuaciones_argentum.report_invoice_document_inherited_argentum"
+        return super()._get_name_invoice_report()
