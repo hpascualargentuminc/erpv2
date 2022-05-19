@@ -10,7 +10,7 @@
         <!-- Se cambia el espaciado en cada renglón, para que entren más por página. -->
         <!-- Descripción -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[1]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 20%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 40%;</attribute>
         </xpath>
         <!-- N.A -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[2]" position="attributes">
@@ -22,15 +22,15 @@
         </xpath>
         <!-- Precio Unitario -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[4]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px; width: 15%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px; width: 20%;</attribute>
         </xpath>
         <!-- Descuento -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[5]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 15%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 10%;</attribute>
         </xpath>
         <!-- Impuestos -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[6]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 20%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 10%;</attribute>
         </xpath>
         <!-- Total -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[7]" position="attributes">
