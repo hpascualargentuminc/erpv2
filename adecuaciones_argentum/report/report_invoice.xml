@@ -4,7 +4,7 @@
     <template id="report_invoice_document_inherited_argentum" inherit_id="l10n_do_accounting.report_invoice_document_inherited" primary="True">
         <!-- Tamaño de letra por defecto -->
         <xpath expr="//div[@class='page']" position="attributes">
-            <attribute name="style">font-size: 6pt;</attribute>  
+            <attribute name="style">font-size: 9pt;</attribute>  
         </xpath>
 
         <!-- Se cambia el espaciado en cada renglón, para que entren más por página. -->
