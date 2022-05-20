@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bank_statement_form_argentum" model="ir.ui.view">
+		<field name="name">view.bank.statement.form.argentum</field>
+		<field name="model">account.bank.statement</field>
+		<field name="inherit_id" ref="account.view_bank_statement_form"/>
+		<field name="arch" type="xml">
+			<!-- Orden de Compra del Cliente -->
+			<xpath expr="//field[@name='payment_ref']" position="before">
+				<field name="unique_import_id"/>
+			</xpath>
+        </field>
+    </record>
+</odoo>

@@ -11,6 +11,7 @@
     "data": [
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
+        'views/bank_statement_form.xml',
         'report/report_invoice.xml',
     ],
     
