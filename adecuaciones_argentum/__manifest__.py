@@ -1,5 +1,5 @@
 {
-    "name": "Adecuaciones Argentum",
+    "name": "Adecuaciones Argentum.",
     "summary": """
         Adecuaciones para Argentum""",
     "author": "ARGENTUM Inc S.R.L.",
