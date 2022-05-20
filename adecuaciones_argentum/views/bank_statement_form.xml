@@ -7,7 +7,7 @@
 		<field name="arch" type="xml">
 			<!-- Orden de Compra del Cliente -->
 			<xpath expr="//field[@name='payment_ref']" position="before">
-				<field name="unique_import_id"/>
+				<field name="unique_import_id" optional="hide"/>
 			</xpath>
         </field>
     </record>

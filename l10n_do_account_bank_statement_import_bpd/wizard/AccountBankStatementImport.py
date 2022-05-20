@@ -145,7 +145,7 @@ class AccountBankStatementImport(models.TransientModel):
                     'ref': transaction.id,
                     'amount': transaction.amount,
                     # Le ponemos un ID único, para asegurar que no se vuelva a importar esta transacción en la importación de otro archivo que podría tener a ésta
-                    'unique_import_id': "BPD"+"|"+str(transaction.date)+"|"+str(transaction.amount)+"|"+str(transaction.payee),
+                    'unique_import_id': "BPD"+"|"+str(transaction.date)+"|"+str(transaction.amount)+"|"+str(transaction.payee)+"|"+str(transaction.id),
                     'partner_bank_id': bank_account_id,
                     'partner_id': partner_id,
                     'sequence': len(transactions) + 1,
