@@ -106,39 +106,68 @@
             </t> 
         </xpath>
 
+        <!-- Notas del final de la factura -->
+        <xpath expr="//p[@name='payment_communication']" position="replace">
+        </xpath>
+
         <!-- Se agrega la tabla de cuentas bancarias -->
-        <!-- <xpath expr="//div[@name='comment']" position="before">
+        <xpath expr="//div[@name='comment']" position="before">
             <t t-if="o.move_type == 'out_invoice'">
-                <table name="firmas_table" style="border: 3px solid; border-color: #9D2E57;">
-                    <tr style="height: 50%">
-                        <td style="width: 30%; padding: 3px 1px 1px 3px;" rowspan="3">
-                            <div t-if="not is_html_empty(o.narration)" name="comment">
-                            <span t-field="o.narration"/>
-                            </div>
+                <table name="cuentas_table">
+                    <tr>
+                        <td style="width: 100%; padding: 3px 1px 1px 3px;" colspan="4">
+                            <bold>INFORMACIÓN PARA TRANSFERENCIA DE FONDOS (Es importante indicar el # de Factura)</bold>
                         </td>
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <!-- <td class="text-center" style="width: 10%; color: white;">.</td>
                         <td class="text-center" style="width: 20%; color: white;">.</td>
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
-                        <td class="text-center" style="width: 20%; color: white;">.</td>
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td> -->
                     </tr>
-                    <tr style="height: 40%">
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
-                        <td class="text-center" style="width: 20%; color: white;">.</td>
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
-                        <td class="text-center" style="width: 20%; color: white;">.</td>
-                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco</td>
+                        <td class="text-left" style="width: 25%;">Cuenta Nro.</td>
+                        <td class="text-left" style="width: 25%;">Moneda</td>
+                        <td class="text-left" style="width: 25%;">Nombre Cuenta</td>
                     </tr>
-                    <tr style="height: 10%">
-                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
-                        <td class="text-center" style="width: 20%; border-top: 1px solid; padding: 2px 2px 2px 2px;">Autorizado por</td>
-                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
-                        <td class="text-center" style="width: 20%; border-top: 1px solid; padding: 2px 2px 2px 2px;">Recibido por</td>
-                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco Popular (Cuenta de Ahorro)</td>
+                        <td class="text-left" style="width: 25%;">741480081</td>
+                        <td class="text-left" style="width: 25%;">Dolares US$</td>
+                        <td class="text-left" style="width: 25%;">ARGENTUM INC SA</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco Popular (Cuenta Corriente)</td>
+                        <td class="text-left" style="width: 25%;">740249198</td>
+                        <td class="text-left" style="width: 25%;">Peso RD$</td>
+                        <td class="text-left" style="width: 25%;">ARGENTUM INC SA</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco BHD León (Cuenta de Ahorro)</td>
+                        <td class="text-left" style="width: 25%;">16844010018</td>
+                        <td class="text-left" style="width: 25%;">Dolares US$</td>
+                        <td class="text-left" style="width: 25%;">ARGENTUM INC SA</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco BHD León (Cuenta Corriente)</td>
+                        <td class="text-left" style="width: 25%;">16844010026</td>
+                        <td class="text-left" style="width: 25%;">Peso RD$</td>
+                        <td class="text-left" style="width: 25%;">ARGENTUM INC SA</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left" style="width: 25%;">Banco de Reservas (Cuenta Corriente)</td>
+                        <td class="text-left" style="width: 25%;">100-01-167-001379-8</td>
+                        <td class="text-left" style="width: 25%;">Peso RD$</td>
+                        <td class="text-left" style="width: 25%;">ARGENTUM INC SA</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%; padding: 3px 1px 1px 3px;" colspan="4">
+                            <bold>Consideraciones:</bold>
+                            <span>- Solamente se reembolsará el ITBIS a las devoluciones realizadas dentro de los 30 días de entrega del producto o servicio</span>
+                            <span>- En caso de que esta factura sea pagada después de la fecha de vencimiento, devengará un 3% de interés moratorio mensual.</span>
+                        </td>
                     </tr>
                 </table>
             </t>
-        </xpath> -->
+        </xpath>
 
     </template>
 
