@@ -7,6 +7,23 @@
             <attribute name="style">font-size: 9pt;</attribute>  
         </xpath>
 
+        <!-- Texto del tipo de comprobante -->
+        <xpath expr="//div[1]/div[2]/h2[1]" position="attributes">
+            <attribute name="style">font-size: 14pt;</attribute> 
+        </xpath>
+
+        <!-- Origen y Número de Factura -->
+        <xpath expr="//div[@name='origin']" position="replace">
+            <div class="col-auto col-2 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
+                <strong>Presupuesto: </strong><p class="m-0" t-field="o.invoice_origin"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='origin']" position="after">
+           <div class="col-auto col-2 mw-100 mb-2" t-if="o.name" name="invoice_name">
+                <strong># Factura: </strong><p class="m-0" t-field="o.name"/>
+            </div>
+        </xpath>
+
         <!-- Se cambia el espaciado en cada renglón, para que entren más por página. -->
         <!-- Descripción -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[1]" position="attributes">
@@ -43,6 +60,86 @@
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[3]/td[1]" position="attributes">
             <attribute name="style">padding: 1px 1px 1px 3px;</attribute>
         </xpath>
+
+        <!-- Sub total de Secciones -->
+        <xpath expr="//tr[@class='is-subtotal text-right']" position="replace">
+            <tr class="is-subtotal text-right">
+                <td colspan="99" style="padding: 1px 1px 1px 3px;">
+                    <strong class="mr16">Subtotal</strong>
+                    <span
+                        t-esc="current_subtotal"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                    />
+                </td>
+            </tr>
+        </xpath>
+
+        <!-- Se cambia la tabla de totales -->
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="replace">
+            <t t-call="aginc_caribbeanceleb.document_tax_totals_inherited_caribbean"/>
+        </xpath>
+
+        <!-- Se cambia la tabla de Pagos -->
+        <xpath expr="//t[@t-if='print_with_payments']" position="replace">
+            <t t-if="print_with_payments">
+                <t t-if="o.payment_state != 'invoicing_legacy'">
+                    <t t-set="payments_vals" t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
+                    <t t-foreach="payments_vals" t-as="payment_vals">
+                        <tr>
+                            <td style="padding: 1px 1px 1px 3px;">
+                                <i class="oe_form_field text-right oe_payment_label">Paid on <t t-esc="payment_vals['date']" t-options='{"widget": "date"}'/></i>
+                            </td>
+                            <td style="padding: 1px 1px 1px 3px;" class="text-right">
+                                <span t-esc="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                    </t>
+                    <t t-if="len(payments_vals) > 0">
+                        <tr class="border-black">
+                            <td style="padding: 1px 1px 1px 3px;"><strong>Amount Due</strong></td>
+                            <td style="padding: 1px 1px 1px 3px;" class="text-right">
+                                <span t-field="o.amount_residual"/>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </t> 
+        </xpath>
+
+        <!-- Se agrega la tabla de cuentas bancarias -->
+        <!-- <xpath expr="//div[@name='comment']" position="before">
+            <t t-if="o.move_type == 'out_invoice'">
+                <table name="firmas_table" style="border: 3px solid; border-color: #9D2E57;">
+                    <tr style="height: 50%">
+                        <td style="width: 30%; padding: 3px 1px 1px 3px;" rowspan="3">
+                            <div t-if="not is_html_empty(o.narration)" name="comment">
+                            <span t-field="o.narration"/>
+                            </div>
+                        </td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <td class="text-center" style="width: 20%; color: white;">.</td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <td class="text-center" style="width: 20%; color: white;">.</td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                    </tr>
+                    <tr style="height: 40%">
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <td class="text-center" style="width: 20%; color: white;">.</td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                        <td class="text-center" style="width: 20%; color: white;">.</td>
+                        <td class="text-center" style="width: 10%; color: white;">.</td>
+                    </tr>
+                    <tr style="height: 10%">
+                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
+                        <td class="text-center" style="width: 20%; border-top: 1px solid; padding: 2px 2px 2px 2px;">Autorizado por</td>
+                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
+                        <td class="text-center" style="width: 20%; border-top: 1px solid; padding: 2px 2px 2px 2px;">Recibido por</td>
+                        <td class="text-center" style="width: 10%; padding: 2px 2px 2px 2px;"></td>
+                    </tr>
+                </table>
+            </t>
+        </xpath> -->
+
     </template>
 
     <template id="report_invoice_argentum" inherit_id="account.report_invoice">
@@ -58,6 +155,6 @@
                t-call="adecuaciones_argentum.report_invoice_document_inherited_argentum" t-lang="lang"/>
         </xpath>
     </template>
-    
+
 </odoo>
         
