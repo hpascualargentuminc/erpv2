@@ -39,7 +39,7 @@
         </xpath>
         <!-- Precio Unitario -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[4]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px; width: 20%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px; width: 30%;</attribute>
         </xpath>
         <!-- Descuento -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[5]" position="attributes">
@@ -51,7 +51,7 @@
         </xpath>
         <!-- Total -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[7]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 20%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 30%;</attribute>
         </xpath>
         <!-- Notas y Secciones -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[2]/td[1]" position="attributes">
@@ -115,7 +115,7 @@
         <!-- Se agrega la tabla de cuentas bancarias -->
         <xpath expr="//p[@name='payment_term']" position="after">
             <t t-if="o.move_type == 'out_invoice'">
-                <table name="cuentas_table" style="width: 500px;">
+                <table name="cuentas_table" style="width: 600px;">
                     <tr>
                         <td style="width: 100%; padding: 3px 1px 1px 3px; font-size: 7pt; font-weight: bold;" colspan="4">INFORMACIÓN PARA TRANSFERENCIA DE FONDOS (Es importante indicar el # de Factura)
                         </td>
