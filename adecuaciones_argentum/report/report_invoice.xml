@@ -39,7 +39,7 @@
         </xpath>
         <!-- Precio Unitario -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[4]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px; width: 30%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px; width: 40%;</attribute>
         </xpath>
         <!-- Descuento -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[5]" position="attributes">
@@ -47,11 +47,11 @@
         </xpath>
         <!-- Impuestos -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[6]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 10%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 5%;</attribute>
         </xpath>
         <!-- Total -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[7]" position="attributes">
-            <attribute name="style">padding: 1px 1px 1px 3px;width: 30%;</attribute>
+            <attribute name="style">padding: 1px 1px 1px 3px;width: 20%;</attribute>
         </xpath>
         <!-- Notas y Secciones -->
         <xpath expr="//t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[2]/td[1]" position="attributes">
