@@ -58,13 +58,6 @@
                t-call="adecuaciones_argentum.report_invoice_document_inherited_argentum" t-lang="lang"/>
         </xpath>
     </template>
-
-    <!-- <template id="external_layout_standard_argentum" inherit_id="web.external_layout_standard">
-        <xpath expr='//div[1]/div[3]' position="replace">
-        </xpath>
-        <xpath expr='//div[@class="pt-5"]' position="replace">
-        </xpath>
-    </template> -->
-
+    
 </odoo>
         

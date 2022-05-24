@@ -106,7 +106,7 @@
                     <t t-if="o.partner_id.is_company or not o.partner_id.parent_id">
                         <span class="m-0" t-field="o.partner_id.name"/>
                         <br/>
-                        <t t-if="o.partner_id.phone">
+                        <!-- <t t-if="o.partner_id.phone">
                             <strong>Tel.:</strong>
                             <span t-field="o.partner_id.phone"/>
                             <t t-if="o.partner_id.mobile">
@@ -116,7 +116,7 @@
                         <t t-if="o.partner_id.mobile">
                             <strong>Cel.:</strong>
                             <span t-field="o.partner_id.mobile" widget="phone"/>
-                        </t>
+                        </t> -->
                     </t>
                     <t t-else="">
                         <t t-set="commercial_partner_id"
@@ -126,7 +126,7 @@
                         <strong>Contacto:</strong>
                         <span t-field="o.partner_id.name"/>
                         <br/>
-                        <t t-if="commercial_partner_id.phone">
+                        <!-- <t t-if="commercial_partner_id.phone">
                             <strong>Tel.:</strong>
                             <span t-field="commercial_partner_id.phone"/>
                             <t t-if="commercial_partner_id.mobile">
@@ -137,10 +137,10 @@
                             <strong>Cel.:</strong>
                             <span t-field="commercial_partner_id.mobile"
                                   widget="phone"/>
-                        </t>
+                        </t> -->
                     </t>
-                    <span t-if="o.partner_id.street" class="m-0" t-field="o.partner_id"
-                          t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                    <!-- <span t-if="o.partner_id.street" class="m-0" t-field="o.partner_id"
+                          t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/> -->
                 </div>
                 <div class="col-auto col-2 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
                     <strong>Origen:</strong>
