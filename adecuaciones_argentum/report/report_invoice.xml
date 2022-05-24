@@ -115,7 +115,7 @@
         <!-- Se agrega la tabla de cuentas bancarias -->
         <xpath expr="//p[@name='payment_term']" position="after">
             <t t-if="o.move_type == 'out_invoice'">
-                <table name="cuentas_table">
+                <table name="cuentas_table" style="width: 200px;">
                     <tr>
                         <td style="width: 100%; padding: 3px 1px 1px 3px; font-size: 7pt; font-weight: bold;" colspan="4">INFORMACIÓN PARA TRANSFERENCIA DE FONDOS (Es importante indicar el # de Factura)
                         </td>
