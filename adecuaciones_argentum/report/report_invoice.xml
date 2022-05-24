@@ -15,12 +15,12 @@
         <!-- Origen y Número de Factura -->
         <xpath expr="//div[@name='origin']" position="replace">
             <div class="col-auto col-2 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
-                <strong>Presupuesto: </strong><p class="m-0" t-field="o.invoice_origin"/>
+                <strong>Presupuesto: </strong><span class="m-0" t-field="o.invoice_origin"/>
             </div>
         </xpath>
         <xpath expr="//div[@name='origin']" position="after">
            <div class="col-auto col-2 mw-100 mb-2" t-if="o.name" name="invoice_name">
-                <strong># Factura: </strong><p class="m-0" t-field="o.name"/>
+                <strong># Factura: </strong><span class="m-0" t-field="o.name"/>
             </div>
         </xpath>
 
