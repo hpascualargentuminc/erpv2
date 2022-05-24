@@ -210,8 +210,8 @@
         </xpath>
         <xpath expr="//tr[@class='border-black o_total']" position="replace">
             <tr class="border-black o_total">
-                <td style="padding: 1px 1px 1px 3px;"><strong>Total</strong></td>
-                <td style="padding: 1px 1px 1px 3px;" class="text-right">
+                <td style="padding: 1px 1px 1px 3px; font-size: 10pt;"><strong>Total</strong></td>
+                <td style="padding: 1px 1px 1px 3px; font-size: 10pt; font-weight: bold;" class="text-right">
                     <span t-esc="tax_totals['formatted_amount_total']"/>
                 </td>
             </tr>
