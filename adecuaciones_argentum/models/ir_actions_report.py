@@ -48,6 +48,6 @@ class IrActionsReport(models.Model):
     #         writer = csv.writer(file)
     #         writer.writerow(html)
         
-        _logger.info(html)
+        _logger.info(f"HTML REPORTE: {html}")
         
         return super()._prepare_html(html)
