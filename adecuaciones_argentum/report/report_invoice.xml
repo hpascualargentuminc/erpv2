@@ -107,13 +107,13 @@
         </xpath>
 
         <!-- Notas del final de la factura -->
-        <!-- <xpath expr="//p[@name='payment_communication']" position="replace">
-        </xpath> -->
+        <xpath expr="//p[@name='payment_communication']" position="replace">
+        </xpath>
         <xpath expr="//div[@name='comment']" position="replace">
         </xpath>
 
         <!-- Se agrega la tabla de cuentas bancarias -->
-        <xpath expr="//div[@name='comment']" position="after">
+        <xpath expr="//div[@name='payment_term']" position="after">
             <t t-if="o.move_type == 'out_invoice'">
                 <table name="cuentas_table" style="width: 600px;">
                     <tr>
