@@ -109,8 +109,9 @@
         <!-- Notas del final de la factura -->
         <xpath expr="//p[@name='payment_communication']" position="replace">
         </xpath>
-        <!-- <xpath expr="//div[@name='comment']" position="replace">
-        </xpath> -->
+
+        <xpath expr="//div[@name='comment']" position="replace">
+        </xpath>
 
         <!-- Se agrega la tabla de cuentas bancarias -->
         <xpath expr="//div[@name='comment']" position="after">
