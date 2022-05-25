@@ -109,13 +109,20 @@
         <!-- Notas del final de la factura -->
         <xpath expr="//p[@name='payment_communication']" position="replace">
         </xpath>
+
         <xpath expr="//div[@name='comment']" position="replace">
         </xpath>
 
         <!-- Se agrega la tabla de cuentas bancarias -->
-        <xpath expr="//p[@name='payment_term']" position="after">
+        <xpath expr="//div[@name='comment']" position="after">
             <t t-if="o.move_type == 'out_invoice'">
                 <table name="cuentas_table" style="width: 600px;">
+                    <tr>
+                        <td class="text-left" style="width: 25%; color: white;">.</td>
+                        <td class="text-left" style="width: 25%; color: white;">.</td>
+                        <td class="text-left" style="width: 25%; color: white;">.</td>
+                        <td class="text-left" style="width: 25%; color: white;">.</td>
+                    </tr>
                     <tr>
                         <td style="width: 100%; padding: 3px 1px 1px 3px; font-size: 7pt; font-weight: bold;" colspan="4">INFORMACIÓN PARA TRANSFERENCIA DE FONDOS (Es importante indicar el # de Factura)
                         </td>
