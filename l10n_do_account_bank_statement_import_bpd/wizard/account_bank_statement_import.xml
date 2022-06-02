@@ -8,6 +8,9 @@
             <xpath expr="//ul[@id='statement_format']" position="inside">
                 <li>Estados Bancarios de Banco Popular Dominicano (OFX -Money-)</li>
             </xpath>
+            <xpath expr="//ul[@id='statement_format']" position="after">
+                <field name="is_credit_card_statement"/>
+            </xpath>
         </field>
     </record>
 </odoo>
