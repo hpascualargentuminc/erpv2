@@ -7,7 +7,13 @@
         <field name="arch" type="xml">
             <xpath expr="//ul[@id='statement_format']" position="inside">
                 <li>Estados Bancarios de Banco Popular Dominicano (OFX -Money-)</li>
+                <li>(Si esta por importar un estado de Tarjeta de Crédito, por favor marque el check que esta debajo)</li>
             </xpath>
+            
+            <xpath expr="field[@name='attachment_ids']" position="after">
+                <field name="is_credit_card_statement" colspan="2" string="is Credit Card Statement?" nolabel="0"/>
+            </xpath>
+
         </field>
     </record>
 </odoo>

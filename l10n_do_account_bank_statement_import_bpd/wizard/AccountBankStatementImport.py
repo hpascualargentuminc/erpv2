@@ -9,7 +9,7 @@ from xml.etree import ElementTree
 from datetime import date
 import datetime
 from odoo.exceptions import UserError
-from odoo import _, api, models
+from odoo import _, api, models,fields
 
 try:
     from ofxparse import OfxParser
@@ -95,6 +95,8 @@ class PatchedOfxParser(OfxParserClass):
 class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
 
+    is_credit_card_statement = fields.Boolean("Credit Card Statement?", default=False, help="This check reverts credit/debit ammounts at import time")
+
     def _check_ofx(self, data_file):
         if data_file.startswith(b"OFXHEADER"):
             #v1 OFX
@@ -139,11 +141,15 @@ class AccountBankStatementImport(models.TransientModel):
                 if partner_bank:
                     bank_account_id = partner_bank.id
                     partner_id = partner_bank.partner_id.id
+                
+                #Change Debit/Credit ammount when statement is credit_card
+                ammount = transaction.amount * -1 if self.is_credit_card_statement else transaction.amount
+
                 vals_line = {
                     'date': transaction.date,
                     'payment_ref': transaction.payee + (transaction.memo and ': ' + transaction.memo or ''),
                     'ref': transaction.id,
-                    'amount': transaction.amount,
+                    'amount': ammount,
                     # Le ponemos un ID único, para asegurar que no se vuelva a importar esta transacción en la importación de otro archivo que podría tener a ésta
                     'unique_import_id': "BPD"+"|"+str(transaction.date)+"|"+str(transaction.amount)+"|"+str(transaction.payee)+"|"+str(transaction.id),
                     'partner_bank_id': bank_account_id,
