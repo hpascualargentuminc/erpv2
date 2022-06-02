@@ -9,7 +9,7 @@ from xml.etree import ElementTree
 from datetime import date
 import datetime
 from odoo.exceptions import UserError
-from odoo import _, api, models
+from odoo import _, api, models,fields
 
 try:
     from ofxparse import OfxParser
