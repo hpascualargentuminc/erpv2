@@ -9,7 +9,7 @@
                 <li>Estados Bancarios de Banco Popular Dominicano (OFX -Money-)</li>
             </xpath>
             <xpath expr="//field[@name='attachment_ids']" position="after">
-                <field name="is_credit_card_statement"/>
+                <field string="is Credit Card Statement?" name="is_credit_card_statement"/>
             </xpath>
 
         </field>
