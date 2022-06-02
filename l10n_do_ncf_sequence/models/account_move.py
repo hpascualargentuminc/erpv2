@@ -52,7 +52,6 @@ class AccountMove(models.Model):
                 self[
                     self._l10n_do_sequence_field
                 ] = ncf
-                self.invoice_date = datetime.today()
                 _logger.info('Account_Move: NCF %s asignado a factura %s del cliente/proveedor %s', ncf, self.name, self.partner_id.name)
 
     def _post(self, soft=True):
