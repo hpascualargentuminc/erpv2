@@ -9,7 +9,6 @@ from xml.etree import ElementTree
 from datetime import date
 import datetime
 
-from rx import of
 from odoo.exceptions import UserError
 from odoo import _, api, models,fields
 
