@@ -8,6 +8,7 @@ import unicodedata
 from xml.etree import ElementTree
 from datetime import date
 import datetime
+
 from odoo.exceptions import UserError
 from odoo import _, api, models,fields
 
@@ -75,8 +76,17 @@ class PatchedOfxParser(OfxParserClass):
         else:
             msec = datetime.timedelta(seconds=0)
 
+        # BPD
+        _today = datetime.datetime.now()
+        if 'ESTADO' in ofxDateTime:
+            datetime.datetime.strptime(_today, '%Y%m%d%H%M%S')
+        
+        if '/' in ofxDateTime and len(ofxDateTime) == 5:
+            ofxDateTime = f"{_today.year}{ofxDateTime.split('/')[1]}{ofxDateTime.split('/')[0]}"
+
         # Some banks seem to return some OFX dates as YYYY-MM-DD; so we remove
         # the '-' characters to support them as well
+
         ofxDateTime = ofxDateTime.replace('-', '')
         ofxDateTime = ofxDateTime.replace('/', '')
 

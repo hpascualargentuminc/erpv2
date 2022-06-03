@@ -2,7 +2,7 @@ import re
 import logging
 from psycopg2 import sql
 from werkzeug import urls
-from datetime import date
+from datetime import date, datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError, AccessError
