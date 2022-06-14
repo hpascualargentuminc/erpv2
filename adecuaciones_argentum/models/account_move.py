@@ -10,8 +10,8 @@ _logger = logging.getLogger(__name__)
 class AccountMove(models.Model):
     _inherit = "account.move"
     
-    partner_purchase_order = fields.Char(string="O/C Cliente")
-    generate_on = fields.datetime(string="Fecha para Generarla")
+    partner_purchase_order = fields.Char(string="O/C Cliente", store=True)
+    generate_on = fields.Datetime(string="Fecha para Generarla", store=True)
     
     def _get_name_invoice_report(self):
         self.ensure_one()
