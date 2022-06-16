@@ -26,6 +26,7 @@
         'views/l10n_latam_document_type_view.xml',
         'views/account_move_views.xml',
         'views/res_partner_views.xml',
+        'views/res_config_settings.xml',
         'security/ir.model.access.csv',
     ],
 

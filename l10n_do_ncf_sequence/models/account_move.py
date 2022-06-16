@@ -11,9 +11,7 @@ _logger = logging.getLogger(__name__)
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    sequence_almost_depleted = fields.Boolean(
-        compute="_compute_sequence_almost_depleted"
-    )
+    sequence_almost_depleted = fields.Boolean(compute="_compute_sequence_almost_depleted")
 
     def _set_next_sequence(self):
         self.ensure_one()
@@ -56,6 +54,21 @@ class AccountMove(models.Model):
 
     def _post(self, soft=True):
         for inv in self:
+            allow_invoice_with_different_date = self.env['ir.config_parameter'].sudo().get_param('account.allow_invoice_with_different_date')
+            seq_code = inv.l10n_latam_document_type_id.sequence_id.code
+            
+            # Para aplicar el control de fecha, debemos validar que sea un comprobante que se genera en nuestra empresa
+            if (inv.move_type in ('out_refund', 'out_invoice')\
+                or (inv.move_type in ('in_invoice') and seq_code in ('B11','B13') )):
+                
+                is_invoice_date_different_from_today = inv.invoice_date!=False and inv.invoice_date!=date.today()
+
+                if not allow_invoice_with_different_date and is_invoice_date_different_from_today:
+                    raise ValidationError(
+                                _(f"Atención. No se puede Confirmar la factura porque la fecha de ésta, {inv.invoice_date}, es diferente a la fecha actual. Corrija o borre la fecha, para poder Confirmar esta factura."))
+                
+
+            
             if (
                 # Hay que ponerlo negativo, porque en una parte de account_move le aplican un signo al revés
                 inv.amount_untaxed_signed <= -250000
