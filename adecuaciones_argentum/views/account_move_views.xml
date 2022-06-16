@@ -11,23 +11,7 @@
 				<field name="move_type" invisible="1"/>
 				<field name="partner_purchase_order" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
 			</xpath>
-			<!-- Fecha para Generarla -->
-			<xpath expr="//field[@name='invoice_date']" position="after">
-				<field name="generate_on" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
-			</xpath>
         </field>
     </record>
 
-	<!-- Vista Tree de Facturas a Clientes -->
-    <record id="custom_view_out_invoice_tree" model="ir.ui.view">
-		<field name="name">custom.view.out.invoice.tree</field>
-		<field name="model">account.move</field>
-		<field name="inherit_id" ref="account.view_out_invoice_tree"/>
-		<field name="arch" type="xml">
-			<!-- Fecha para Generarla -->
-			<xpath expr="//field[@name='invoice_date']" position="after">
-				<field name="generate_on"/>
-			</xpath>
-        </field>
-    </record>
 </odoo>
