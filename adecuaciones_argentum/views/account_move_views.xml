@@ -11,10 +11,6 @@
 				<field name="move_type" invisible="1"/>
 				<field name="partner_purchase_order" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
 			</xpath>
-			<!-- Fecha para Generarla -->
-			<xpath expr="//field[@name='invoice_date']" position="after">
-				<field name="generate_on" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
-			</xpath>
         </field>
     </record>
 </odoo>
