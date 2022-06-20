@@ -18,7 +18,7 @@ class AccountMove(models.Model):
             return "adecuaciones_argentum.report_invoice_document_inherited_argentum"
         return super()._get_name_invoice_report()
     
-    # Este método devuelve un nombre de factura custom para los combos    
+    # Este método devuelve un nombre de factura custom
     def name_get(self):
         result = []
         for record in self:

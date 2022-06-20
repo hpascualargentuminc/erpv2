@@ -20,3 +20,9 @@ class Task(models.Model):
                     self.parent_partner_id = self.partner_id.parent_id if self.partner_id.parent_id else self.partner_id
             except:
                 pass
+
+    @api.onchange('date_deadline')
+    def _update_invoice_date(self):
+        for record in self:
+            if record.date_deadline:
+                record.invoice_id.write({'invoice_date': record.date_deadline})
