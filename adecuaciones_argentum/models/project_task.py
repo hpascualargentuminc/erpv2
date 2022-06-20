@@ -31,7 +31,6 @@ class Task(models.Model):
         self._update_invoice_date()
         return res
 
-    @api.multi
     def write(self, values):
         res = super(Task, self).write(values)
         self._update_invoice_date()
