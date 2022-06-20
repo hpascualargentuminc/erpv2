@@ -12,9 +12,9 @@ class Task(models.Model):
     
     @api.onchange('partner_id')
     def _compute_parent_partner_id(self):
-        if self.partner_id:
-            if self.partner_id.company_type == 'company':
-                self.parent_partner_id = self.partner_id
-            else:
-                self.parent_partner_id = self.partner_id.parent_id if self.partner_id.parent_id else self.partner_id
+        for record in self:    
+            if record.partner_id.company_type == 'company':
+                record.parent_partner_id = record.partner_id
+            elif record.partner_id.company_type == 'person':
+                record.parent_partner_id = record.partner_id.parent_id if record.partner_id.parent_id else record.partner_id
                 
