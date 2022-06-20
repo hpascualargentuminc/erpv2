@@ -8,7 +8,7 @@ class Task(models.Model):
     _inherit = 'project.task'
 
     invoice_id = fields.Many2one('account.move', string='Factura', help='Factura asociada a la Tarea/Hito')
-    parent_partner_id = fields.Many2one('res.partner', compute="_compute_parent_partner_id")
+    parent_partner_id = fields.Many2one('res.partner', compute="_compute_parent_partner_id", store=True)
     
     @api.onchange('partner_id')
     def _compute_parent_partner_id(self):
