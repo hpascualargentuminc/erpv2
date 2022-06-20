@@ -22,7 +22,10 @@ class AccountMove(models.Model):
     def name_get(self):
         result = []
         for record in self:
-            record_name = f"{record.name} | {record.id} | {record.partner_id.name} | {record.currency_id.symbol} {record.amount_total_in_currency_signed}"
+            if record.name:
+                record_name = f"{record.name} | {record.partner_id.name} | {record.currency_id.symbol} {record.amount_total_in_currency_signed}"
+            else:
+                record_name = f"{record.id} | {record.partner_id.name} | {record.currency_id.symbol} {record.amount_total_in_currency_signed}"
             result.append((record.id, record_name))
 
         return result 
