@@ -8,7 +8,7 @@
 		<field name="arch" type="xml">
 			<!-- Orden de Compra del Cliente -->
 			<xpath expr="//field[@name='parent_id']" position="after">
-                <field name="invoice_id" invisible="1"/>
+                <field name="parent_partner_id" invisible="1"/>
 				<field name="invoice_id" domain="['|',('partner_id', '=', parent_partner_id),('partner_id', '=', partner_id),('state', '=', 'draft')]"/>
 			</xpath>
         </field>
