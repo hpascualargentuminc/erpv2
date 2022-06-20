@@ -20,4 +20,3 @@ class Task(models.Model):
                     self.parent_partner_id = self.partner_id.parent_id if self.partner_id.parent_id else self.partner_id
             except:
                 pass
-                
