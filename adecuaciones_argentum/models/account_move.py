@@ -17,3 +17,12 @@ class AccountMove(models.Model):
         if self.l10n_latam_use_documents and self.country_code == "DO":
             return "adecuaciones_argentum.report_invoice_document_inherited_argentum"
         return super()._get_name_invoice_report()
+    
+    # Este método devuelve un nombre de factura custom para los combos    
+    def name_get(self):
+        result = []
+        for record in self:
+            record_name = record.partner_id.name + "| " + str(record.amount_total_signed)
+            result.append((record.id, record_name))
+
+        return result 
