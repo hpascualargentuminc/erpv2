@@ -14,6 +14,6 @@ class Task(models.Model):
     def _compute_parent_partner_id(self):
         if self.partner_id:
             self.parent_partner_id = self.partner_id
-            if self.partner_id.parent_id != False:
+            if self.partner_id.parent_id != "":
                 self.parent_partner_id = self.partner_id.parent_id
                 
