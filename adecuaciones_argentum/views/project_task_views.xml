@@ -9,8 +9,8 @@
 			<!-- Orden de Compra del Cliente -->
 			<xpath expr="//field[@name='parent_id']" position="after">
                 <field name="parent_partner_id"/>
-				<!-- <field name="invoice_id" domain="[('partner_id', '=', parent_partner_id),('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/> -->
-                <field name="invoice_id" domain="[('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/>
+				<field name="invoice_id" domain="[('partner_id', '=', parent_partner_id),('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/>
+                <!-- <field name="invoice_id" domain="[('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/> -->
 			</xpath>
         </field>
     </record>
