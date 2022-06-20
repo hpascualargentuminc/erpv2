@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Formulario de Tarea -->
+    <record id="custom_view_task_form2" model="ir.ui.view">
+		<field name="name">custom.view.task.form2</field>
+		<field name="model">project.task</field>
+		<field name="inherit_id" ref="project.view_task_form2"/>
+		<field name="arch" type="xml">
+			<!-- Orden de Compra del Cliente -->
+			<xpath expr="//field[@name='parent_id']" position="after">
+				<field name="invoice_id"/>
+			</xpath>
+        </field>
+    </record>
+
+</odoo>
