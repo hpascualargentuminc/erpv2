@@ -13,6 +13,7 @@
         'views/account_move_views.xml',
         'views/bank_statement_form.xml',
         'report/report_invoice.xml',
+        'views/project_task_views.xml'
     ],
     
 }
