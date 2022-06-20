@@ -25,7 +25,7 @@ class Task(models.Model):
             except:
                 pass
 
-    @api.onchange('date_deadline')
+    @api.onchange('date_deadline','invoice_id')
     def _update_invoice_date(self):
         for record in self:
             record.invoice_id.sudo().write({'invoice_date': record.date_deadline})
