@@ -32,6 +32,6 @@ class Task(models.Model):
                 record.invoice_id.sudo().write({'invoice_date': record.date_deadline})
 
     @api.onchange('invoice_id')
-    def _clean_date_deadline(self):
+    def _clean_date_deadline2(self):
         for record in self:
             record.date_deadline = ""
