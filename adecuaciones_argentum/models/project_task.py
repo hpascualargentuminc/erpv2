@@ -27,6 +27,4 @@ class Task(models.Model):
     @api.onchange('date_deadline')
     def _update_invoice_date(self):
         for record in self:
-            _logger.info(f"Date Deadline: {record.date_deadline}")
-            if record.date_deadline:
-                record.invoice_id.write({'invoice_date': record.date_deadline})
+            record.invoice_id.invoice_date = record.date_deadline
