@@ -9,7 +9,7 @@
 			<!-- Orden de Compra del Cliente -->
 			<xpath expr="//field[@name='parent_id']" position="after">
                 <field name="parent_partner_id" invisible="1"/>
-				<field name="invoice_id" domain="['|',('partner_id', '=', parent_partner_id),('partner_id', '=', partner_id),('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/>
+				<field name="invoice_id" domain="['|','|',('partner_id', '=', parent_partner_id),('partner_id.parent_id', '=', parent_partner_id),('partner_id', '=', partner_id),('state', '=', 'draft'),('move_type', '=', 'out_invoice')]"/>
 			</xpath>
         </field>
     </record>

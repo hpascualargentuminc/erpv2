@@ -24,14 +24,20 @@ class Task(models.Model):
                     self.parent_partner_id = self.partner_id.parent_id if self.partner_id.parent_id else self.partner_id
             except:
                 pass
+    
+    @api.model
+    def create(self, values):
+        res = super(Task, self).create(values)
+        self._update_invoice_date()
+        return res
 
-    @api.onchange('date_deadline')
+    def write(self, values):
+        res = super(Task, self).write(values)
+        self._update_invoice_date()
+        return res
+    
     def _update_invoice_date(self):
         for record in self:
-            if record.date_deadline:
+            if record.date_deadline and record.invoice_id and record.invoice_id.state in ('draft'):
                 record.invoice_id.sudo().write({'invoice_date': record.date_deadline})
 
-    @api.onchange('invoice_id')
-    def _clean_date_deadline2(self):
-        for record in self:
-            record.date_deadline = ""
