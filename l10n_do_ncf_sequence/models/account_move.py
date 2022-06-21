@@ -2,7 +2,7 @@ import re
 import logging
 from psycopg2 import sql
 from werkzeug import urls
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError, AccessError
@@ -58,17 +58,17 @@ class AccountMove(models.Model):
             seq_code = inv.l10n_latam_document_type_id.sequence_id.code
             
             # Para aplicar el control de fecha, debemos validar que sea un comprobante que se genera en nuestra empresa
-            if (inv.move_type in ('out_refund', 'out_invoice')\
-                or (inv.move_type in ('in_invoice') and seq_code in ('B11','B13') )):
-                
-                is_invoice_date_different_from_today = inv.invoice_date!=False and inv.invoice_date!=date.today()
+            if inv.invoice_date != False and \
+                ((inv.move_type in ('out_refund', 'out_invoice') \
+                or (inv.move_type in ('in_invoice') and seq_code in ('B11','B13') ))):
+                date_today = datetime.strptime(datetime.strptime(str(datetime.today()+timedelta(hours=-4)), "%Y-%m-%d %H:%M:%S.%f").strftime("%Y-%m-%d"), '%Y-%m-%d')
+                adjusted_invoice_date = datetime.strptime(f"{datetime.strftime(inv.invoice_date,'%Y-%m-%d')} 00:00:00",'%Y-%m-%d %H:%M:%S')
+                is_invoice_date_different_from_today = adjusted_invoice_date != date_today
 
                 if not allow_invoice_with_different_date and is_invoice_date_different_from_today:
                     raise ValidationError(
-                                _(f"Atención. No se puede Confirmar la factura porque la fecha de ésta, {inv.invoice_date}, es diferente a la fecha actual. Corrija o borre la fecha, para poder Confirmar esta factura."))
-                
-
-            
+                                _(f"Atención. No se puede Confirmar la factura porque la fecha de ésta, {datetime.strftime(adjusted_invoice_date, '%d/%m/%Y')}, es diferente a la fecha actual. Corrija o borre la fecha, para poder Confirmar esta factura."))
+                    
             if (
                 # Hay que ponerlo negativo, porque en una parte de account_move le aplican un signo al revés
                 inv.amount_untaxed_signed <= -250000
