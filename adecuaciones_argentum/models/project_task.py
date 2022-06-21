@@ -38,6 +38,6 @@ class Task(models.Model):
     
     def _update_invoice_date(self):
         for record in self:
-            if record.date_deadline and record.invoice_id:
+            if record.date_deadline and record.invoice_id and record.invoice_id.state in ('draft'):
                 record.invoice_id.sudo().write({'invoice_date': record.date_deadline})
 
