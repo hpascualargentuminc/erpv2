@@ -36,7 +36,6 @@ class Task(models.Model):
         self._update_invoice_date()
         return res
     
-    #@api.onchange('date_deadline')
     def _update_invoice_date(self):
         for record in self:
             if record.date_deadline and record.invoice_id:
