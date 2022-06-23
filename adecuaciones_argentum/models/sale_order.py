@@ -13,6 +13,7 @@ class SaleOrder(models.Model):
     base_amount_untaxed = fields.Monetary(string="Monto Base", store=True, compute='_update_base_amount_untaxed')
     company_currency_id = fields.Many2one(related='company_id.currency_id', depends=['company_id.currency_id'], store=True, string='Moneda de la Empresa')
     partner_purchase_order = fields.Char(string="O/C Cliente")
+    first_invoice_perc = fields.Float(string="Porc. a cobrar 1ra Factura")
         
     @api.depends('order_line.price_total')
     def _update_base_amount_untaxed(self):
