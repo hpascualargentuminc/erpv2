@@ -14,6 +14,11 @@ class SaleOrder(models.Model):
     company_currency_id = fields.Many2one(related='company_id.currency_id', depends=['company_id.currency_id'], store=True, string='Moneda de la Empresa')
     partner_purchase_order = fields.Char(string="O/C Cliente")
     first_invoice_perc = fields.Float(string="Porc. 1ra Factura")
+    opportunity_stage = fields.Many2one(string="Estado de Oportunidad", compute="_compute_opportunity_stage")
+    
+    def _compute_opportunity_stage(self):
+        for order in self:
+            order.opportunity_stage = order.opportunity_id.stage_id
         
     @api.depends('order_line.price_total')
     def _update_base_amount_untaxed(self):

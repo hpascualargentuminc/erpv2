@@ -28,7 +28,7 @@
 			</xpath>
 			<!-- Porc a cobrar 1ra Factura -->
 			<xpath expr="//field[@name='payment_term_id']" position="after">
-				<field name="opportunity_id.stage_id"/>
+				<field name="opportunity_stage"/>
 				<field name="first_invoice_perc"/>
 			</xpath>
         </field>
