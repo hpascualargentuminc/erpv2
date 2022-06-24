@@ -14,6 +14,14 @@ class SaleOrder(models.Model):
     company_currency_id = fields.Many2one(related='company_id.currency_id', depends=['company_id.currency_id'], store=True, string='Moneda de la Empresa')
     partner_purchase_order = fields.Char(string="O/C Cliente")
     first_invoice_perc = fields.Float(string="Porc. 1ra Factura", default=100.00)
+    
+    @api.onchange('first_invoice_perc','state')
+    def _update_data_on_opportunity(self):
+        for order in self:
+            if order.opportunity_id and order.payment_term_id:
+                first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed)[0]
+                first_invoice_amount = order.opportunity_id.expected_revenue * (order.first_invoice_perc/100)
+                order.opportunity_id.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
             
     @api.depends('order_line.price_total')
     def _update_base_amount_untaxed(self):

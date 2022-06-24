@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="crm_lead_view_form_argentum" model="ir.ui.view">
+        <field name="name">crm.lead.view.form.argentum</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Datos del Primer Pago -->
+            <xpath expr="//group[@name='lead_partner']" position="before">
+                <group name="first_payment" string="Datos del 1er Pago" attrs="{'invisible': [('type', '!=', 'opportunity')]}">                                
+                    <field name="first_invoice_date" readonly="1"/>
+                    <field name="first_invoice_amount" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
