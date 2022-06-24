@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
             <!-- Datos del Primer Pago -->
-            <xpath expr="//group[@string='Contact Information']" position="before">
+            <xpath expr="//group[@name='Misc']" position="after">
                 <group name="first_payment" string="Datos del 1er Pago">
                     <field name="first_invoice_date" readonly="1"/>
                     <field name="first_invoice_amount" readonly="1"/>
