@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
     partner_purchase_order = fields.Char(string="O/C Cliente")
     first_invoice_perc = fields.Float(string="Porc. 1ra Factura", default=100.00)
     
-    @api.onchange('first_invoice_perc','state')
+    @api.onchange('first_invoice_perc','state','payment_term_id')
     def _update_data_on_opportunity(self):
         for order in self:
             if order.opportunity_id and order.payment_term_id:
