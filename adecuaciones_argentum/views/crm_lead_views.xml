@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <!-- Datos del Primer Pago -->
             <xpath expr="//group[@name='lead_partner']" position="before">
-                <group name="first_payment" string="Datos del 1er Pago" attrs="{'invisible': [('type', '!=', 'opportunity')]}">                                
+                <group name="first_payment" string="Datos del 1er Pago">
                     <field name="first_invoice_date" readonly="1"/>
                     <field name="first_invoice_amount" readonly="1"/>
                 </group>
