@@ -12,8 +12,8 @@
 				<filter string="Borrador" name="state_draft" domain="[('state', '=', 'draft')]"/>
 				<filter string="Publicado" name="state_posted" domain="[('state', '=', 'posted')]"/>
 				<separator/>  
-				<filter name="No Pagado" string="Unpaid" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('not_paid', 'partial'))]"/>
-				<filter name="Pagado" string="Paid" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('in_payment', 'paid'))]"/>
+				<filter name="unpaid" string="No Pagado" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('not_paid', 'partial'))]"/>
+				<filter name="paid" string="Pagado" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('in_payment', 'paid'))]"/>
             </search>
         </field>
     </record>
@@ -67,7 +67,7 @@
 		<field name="type">ir.actions.act_window</field>
         <field name="res_model">report.account.analytics</field>
         <field name="view_mode">dashboard,tree</field>
-        <field name="context">{'search_default_state_draft': 1,'search_default_state_posted': 1}</field>
+        <field name="context">{'search_default_state_draft': 1,'search_default_state_posted': 1,'search_default_unpaid': 1}</field>
     </record>
 
 

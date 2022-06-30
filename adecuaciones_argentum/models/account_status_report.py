@@ -21,7 +21,7 @@ class AccountStatusReport(models.Model):
             ('draft', 'Borrador'),
             ('posted', 'Publicado'),
             ('cancel', 'Cancelado'),
-        ], string='Status', readonly=True)
+        ], string='Estado', readonly=True)
     move_type = fields.Selection(selection=[
             ('entry', 'Entrada'),
             ('out_invoice', 'Factura de Cliente'),
@@ -30,7 +30,7 @@ class AccountStatusReport(models.Model):
             ('in_refund', 'Nota de Débito'),
             ('out_receipt', 'Recibo de Venta'),
             ('in_receipt', 'Recibo de Compra'),
-        ], string='Type', readonly=True)
+        ], string='Tipo', readonly=True)
     
     company_id = fields.Many2one(comodel_name='res.company', string=u'Compañia',readonly=True)
     currency_id = fields.Many2one('res.currency', readonly=True, string='Moneda')
