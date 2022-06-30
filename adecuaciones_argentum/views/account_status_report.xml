@@ -87,5 +87,6 @@
         <field name="context">{'search_default_available': 1}</field>
     </record>
 
-	<menuitem id="menu_action_report_account_analytic_account_report" name="Analytic Invoice Report" action="action_account_report_analytic" parent="account.account_reports_management_menu" groups="analytic.group_analytic_accounting"/>
+
+	<menuitem id="menu_action_report_account_analytic_account_report" name="Analytic Invoice Report" action="report_account_analytics_action" parent="account.account_reports_management_menu" groups="analytic.group_analytic_accounting"/>
 </odoo>
