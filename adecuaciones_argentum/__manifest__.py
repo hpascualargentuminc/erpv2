@@ -9,6 +9,7 @@
     "depends": ["base", "sale_management", "sale_crm", "account", "account_accountant", "l10n_do_accounting"],
     # always loaded
     "data": [
+        'security/ir.model.access.csv',
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
         'views/bank_statement_form.xml',

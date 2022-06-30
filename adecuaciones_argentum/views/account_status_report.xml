@@ -67,26 +67,44 @@
         </field>
     </record>
 
-    <record id="report_account_analytics_view_pivot" model="ir.ui.view">
-        <field name="name">report.account.analytics.pivot</field>
-        <field name="model">report.account.analytics</field>
-        <field name="arch" type="xml">
-            <pivot string="Estate Overview">
-                <field name="bedrooms" type="col"/>
-                <field name="property_type_id" type="row"/>
-                <field name="expected_price" type="measure"/>
-                <field name="selling_price" type="measure"/>
-            </pivot>
-        </field>
-    </record>
-
     <record id="report_account_analytics_action" model="ir.actions.act_window">
-        <field name="name">Account Status Report</field>
+        <field name="name">In/Out Report</field>
+		<field name="type">ir.actions.act_window</field>
         <field name="res_model">report.account.analytics</field>
         <field name="view_mode">dashboard,tree</field>
         <field name="context">{'search_default_available': 1}</field>
     </record>
 
 
-	<menuitem id="menu_action_report_account_analytic_account_report" name="Analytic Invoice Report" action="report_account_analytics_action" parent="account.account_reports_management_menu" groups="analytic.group_analytic_accounting"/>
+	<menuitem id="menu_action_report_account_analytic_account_report" 
+	          name="Analytic Invoice Report" 
+			  action="report_account_analytics_action" 
+			  parent="account.account_reports_management_menu"/>
+
+	<!-- <record id="dgii_report_action" model="ir.actions.act_window">
+        <field name="name">Reports</field>
+        <field name="res_model">dgii.reports</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="dgii_report_search_view"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            You can create your DGII Tax Statements here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="dgii_menu" name="DGII"
+              parent="account_accountant.menu_accounting"
+              sequence="5"
+              groups="account.group_account_user"/>
+
+    <menuitem id="dgii_report_parent_menu" name="Data Sending"
+              parent="dgii_menu"
+              sequence="5"/>
+
+    <menuitem action="dgii_report_action" id="dgii_report_menu"
+              parent="dgii_report_parent_menu"
+              sequence="14"/> -->
+
 </odoo>
