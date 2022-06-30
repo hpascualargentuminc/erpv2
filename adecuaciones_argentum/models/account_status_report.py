@@ -11,7 +11,7 @@ class AccountStatusReport(models.Model):
     _description = "Analisis de Entradas y Salidas"
     _rec_name = 'id'
 
-    name = fields.Char('Número de Comprobante',readonly="True")
+    name = fields.Char(u'Número de Comprobante',readonly="True")
     partner_id = fields.Many2one('res.partner', readonly=True,string="Empresa")
     invoice_date = fields.Date(string='Fecha de Factura', readonly=True)
     invoice_date_due = fields.Date(string='Fecha de Vencimiento', readonly=True)
@@ -32,7 +32,7 @@ class AccountStatusReport(models.Model):
             ('in_receipt', 'Purchase Receipt'),
         ], string='Type', readonly=True)
     
-    company_id = fields.Many2one(comodel_name='res.company', string='Compañia',readonly=True)
+    company_id = fields.Many2one(comodel_name='res.company', string=u'Compañia',readonly=True)
     currency_id = fields.Many2one('res.currency', readonly=True, string='Moneda')
     company_currency_id = fields.Many2one(string='Moneda Compañia', readonly=True, related='company_id.currency_id')
 
