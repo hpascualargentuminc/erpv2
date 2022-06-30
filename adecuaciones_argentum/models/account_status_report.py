@@ -23,13 +23,13 @@ class AccountStatusReport(models.Model):
             ('cancel', 'Cancelado'),
         ], string='Status', readonly=True)
     move_type = fields.Selection(selection=[
-            ('entry', 'Journal Entry'),
-            ('out_invoice', 'Customer Invoice'),
-            ('out_refund', 'Customer Credit Note'),
-            ('in_invoice', 'Vendor Bill'),
-            ('in_refund', 'Vendor Credit Note'),
-            ('out_receipt', 'Sales Receipt'),
-            ('in_receipt', 'Purchase Receipt'),
+            ('entry', 'Entrada'),
+            ('out_invoice', 'Factura de Cliente'),
+            ('out_refund', 'Nota de Crédito'),
+            ('in_invoice', 'Factura de Proveedor'),
+            ('in_refund', 'Nota de Débito'),
+            ('out_receipt', 'Recibo de Venta'),
+            ('in_receipt', 'Recibo de Compra'),
         ], string='Type', readonly=True)
     
     company_id = fields.Many2one(comodel_name='res.company', string=u'Compañia',readonly=True)
