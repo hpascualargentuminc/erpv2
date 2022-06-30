@@ -31,12 +31,23 @@ class AccountStatusReport(models.Model):
             ('out_receipt', 'Sales Receipt'),
             ('in_receipt', 'Purchase Receipt'),
         ], string='Type', readonly=True)
-    amount_untaxed_signed = fields.Monetary(string='Untaxed Amount Signed', readonly=True)
-    amount_tax_signed = fields.Monetary(string='Tax Signed', readonly=True)
-    amount_total_signed = fields.Monetary(string='Total Signed', readonly=True)
-    amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True)
-    amount_tax = fields.Monetary(string='Tax', readonly=True)
-    amount_total = fields.Monetary(string='Total', readonly=True)
+    
+    company_id = fields.Many2one(comodel_name='res.company', string='Company',readonly=True)
+    currency_id = fields.Many2one('res.currency', readonly=True, string='Currency')
+    company_currency_id = fields.Many2one(string='Company Currency', readonly=True, related='company_id.currency_id')
+
+    amount_untaxed_signed = fields.Monetary(string='Untaxed Amount Signed', readonly=True,
+                            currency_field='company_currency_id')
+    amount_tax_signed = fields.Monetary(string='Tax Signed', readonly=True,
+                            currency_field='company_currency_id')
+    amount_total_signed = fields.Monetary(string='Total Signed', readonly=True,
+                            currency_field='company_currency_id')
+    amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True,
+                            currency_field='company_currency_id')
+    amount_tax = fields.Monetary(string='Tax', readonly=True,
+                            currency_field='company_currency_id')
+    amount_total = fields.Monetary(string='Total', readonly=True,
+                            currency_field='company_currency_id')
     payment_state = fields.Selection( [
             ('not_paid', 'Not Paid'),
             ('in_payment', 'In Payment'),
@@ -49,8 +60,9 @@ class AccountStatusReport(models.Model):
 
     def _select(self):
         return """
-           SELECT AM.id,
-                AM.NAME,
+          SELECT AM.NAME,
+                AM.COMPANY_ID,
+                AM.CURRENCY_ID,
                 AM.PARTNER_ID,
                 AM.L10N_LATAM_DOCUMENT_TYPE_ID,
                 AM.L10N_DO_FISCAL_NUMBER,
