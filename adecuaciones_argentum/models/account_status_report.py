@@ -8,19 +8,19 @@ class AccountStatusReport(models.Model):
 
     _name = "report.account.analytics"
     _auto = False
-    _description = "Account Analytics Report"
+    _description = "Analisis de Entradas y Salidas"
     _rec_name = 'id'
 
-    name = fields.Char('Number',readonly="True")
-    partner_id = fields.Many2one('res.partner', readonly=True)
-    invoice_date = fields.Date(string='Invoice/Bill Date', readonly=True)
-    invoice_date_due = fields.Date(string='Due Date', readonly=True)
-    l10n_latam_document_type_id = fields.Many2one("l10n_latam.document.type", "Document Type", readonly=True)
-    l10n_do_fiscal_number = fields.Char("Fiscal Number", readonly=True)
+    name = fields.Char('Número de Comprobante',readonly="True")
+    partner_id = fields.Many2one('res.partner', readonly=True,string="Empresa")
+    invoice_date = fields.Date(string='Fecha de Factura', readonly=True)
+    invoice_date_due = fields.Date(string='Fecha de Vencimiento', readonly=True)
+    l10n_latam_document_type_id = fields.Many2one("l10n_latam.document.type", "Tipo de Comprobante", readonly=True)
+    l10n_do_fiscal_number = fields.Char("Comprobante Fiscal", readonly=True)
     state = fields.Selection(selection=[
-            ('draft', 'Draft'),
-            ('posted', 'Posted'),
-            ('cancel', 'Cancelled'),
+            ('draft', 'Borrador'),
+            ('posted', 'Publicado'),
+            ('cancel', 'Cancelado'),
         ], string='Status', readonly=True)
     move_type = fields.Selection(selection=[
             ('entry', 'Journal Entry'),
@@ -32,31 +32,26 @@ class AccountStatusReport(models.Model):
             ('in_receipt', 'Purchase Receipt'),
         ], string='Type', readonly=True)
     
-    company_id = fields.Many2one(comodel_name='res.company', string='Company',readonly=True)
-    currency_id = fields.Many2one('res.currency', readonly=True, string='Currency')
-    company_currency_id = fields.Many2one(string='Company Currency', readonly=True, related='company_id.currency_id')
+    company_id = fields.Many2one(comodel_name='res.company', string='Compañia',readonly=True)
+    currency_id = fields.Many2one('res.currency', readonly=True, string='Moneda')
+    company_currency_id = fields.Many2one(string='Moneda Compañia', readonly=True, related='company_id.currency_id')
 
-    amount_untaxed_signed = fields.Monetary(string='Untaxed Amount Signed', readonly=True,
+    amount_untaxed_signed = fields.Monetary(string='Total sin Impuestos', readonly=True,
                             currency_field='company_currency_id')
-    amount_tax_signed = fields.Monetary(string='Tax Signed', readonly=True,
+    amount_tax_signed = fields.Monetary(string='Impuestos', readonly=True,
                             currency_field='company_currency_id')
-    amount_total_signed = fields.Monetary(string='Total Signed', readonly=True,
+    amount_total_signed = fields.Monetary(string='Total', readonly=True,
                             currency_field='company_currency_id')
-    amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True,
-                            currency_field='company_currency_id')
-    amount_tax = fields.Monetary(string='Tax', readonly=True,
-                            currency_field='company_currency_id')
-    amount_total = fields.Monetary(string='Total', readonly=True,
-                            currency_field='company_currency_id')
+    
     payment_state = fields.Selection( [
-            ('not_paid', 'Not Paid'),
-            ('in_payment', 'In Payment'),
-            ('paid', 'Paid'),
-            ('partial', 'Partially Paid'),
-            ('reversed', 'Reversed'),
+            ('not_paid', 'No Pagado'),
+            ('in_payment', 'En Proceso de Pago'),
+            ('paid', 'Pagado'),
+            ('partial', 'Pagado Parcial'),
+            ('reversed', 'Reversado'),
             ('invoicing_legacy', 'Invoicing App Legacy'),
-        ], string="Payment Status",readonly=True)
-    journal_id = fields.Many2one('account.journal', string='Journal', readonly=True)
+        ], string="Estado de Pago",readonly=True)
+    journal_id = fields.Many2one('account.journal', string='Diario', readonly=True)
 
     def _select(self):
         return """
@@ -74,9 +69,6 @@ class AccountStatusReport(models.Model):
                 AM.AMOUNT_UNTAXED_SIGNED,
                 AM.AMOUNT_TAX_SIGNED,
                 AM.AMOUNT_TOTAL_SIGNED,
-                AM.AMOUNT_UNTAXED,
-                AM.AMOUNT_TAX,
-                AM.AMOUNT_TOTAL,
                 AM.PAYMENT_STATE,
                 AM.JOURNAL_ID
         """
