@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_account_analytics_view_search" model="ir.ui.view">
+        <field name="name">report.account.analytics.search</field>
+        <field name="model">report.account.analytics</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+				<filter name="partnet_id"/>
+			    </separator>
+				<filter name="invoice_date" date="invoice_date"/>
+				<filter name="invoice_date_due" date="invoice_date_due"/>
+			    </separator>
+				<filter string="Draft" name="state_draft" domain="[('state', '=', 'draft')]"/>
+				<filter string="Posted" name="state_posted" domain="[('state', '=', 'posted')]"/>
+ 			   </separator>
+				<filter name="open" string="Unpaid" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('not_paid', 'partial'))]"/>
+				<filter name="closed" string="Paid" domain="[('state', '=', 'posted'), ('payment_state', 'in', ('in_payment', 'paid'))]"/>
+            </search>
+        </field>
+    </record>
+
+	<record id="report_account_analytics_view_tree" model="ir.ui.view">
+        <field name="name">report.account.analytics.tree</field>
+        <field name="model">report.account.analytics</field>
+        <field name="arch" type="xml">
+            <tree string="Account Status Report">
+				<field name="name"/>
+                <field name="partnet_id"/>
+                <field name="invoice_date"/>
+                <field name="invoice_date_due"/>
+				<field name="l10n_latam_document_type_id"/>
+				<field name="l10n_do_fiscal_number"/>
+                <field name="amount_untaxed_signed"/>
+                <field name="amount_tax_signed"/>
+                <field name="amount_total_signed"/>
+                <field name="state"/>
+                <field name="payment_state"/>
+            </tree>
+        </field>
+    </record>
+	
+	<record id="report_account_analytics_view_pivot" model="ir.ui.view">
+        <field name="name">report.account.analytics.pivot</field>
+        <field name="model">report.account.analytics</field>
+		<field name="arch" type="xml">
+			<pivot string="Invoice/Oportunities Analytics" sample="1">
+                <field name="invoice_date_due" interval="month" type="c"/>
+				<field name="move_type" type="row"/>
+                <field name="amount_untaxed_signed" type="measure"/>
+                <field name="amount_tax_signed" type="measure"/>
+                <field name="amount_total_signed" type="measure"/>
+			</pivot>
+		</field>
+	</record>
+	
+	<record id="report_account_analytics_view_dashboard" model="ir.ui.view">
+        <field name="name">report.account.analytics.dashboard</field>
+        <field name="model">report.account.analytics</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <group>
+                    <view type="pivot" ref="report_account_analytics_view_pivot" />
+                </group>
+            </dashboard>
+        </field>
+    </record>
+
+    <record id="report_account_analytics_view_pivot" model="ir.ui.view">
+        <field name="name">report.account.analytics.pivot</field>
+        <field name="model">report.account.analytics</field>
+        <field name="arch" type="xml">
+            <pivot string="Estate Overview">
+                <field name="bedrooms" type="col"/>
+                <field name="property_type_id" type="row"/>
+                <field name="expected_price" type="measure"/>
+                <field name="selling_price" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="report_account_analytics_action" model="ir.actions.act_window">
+        <field name="name">Account Status Report</field>
+        <field name="res_model">report.account.analytics</field>
+        <field name="view_mode">dashboard,tree</field>
+        <field name="context">{'search_default_available': 1}</field>
+    </record>
+
+	<menuitem id="menu_action_report_account_analytic_account_report" name="Analytic Invoice Report" action="action_account_report_analytic" parent="account.account_reports_management_menu" groups="analytic.group_analytic_accounting"/>
+</odoo>
