@@ -60,7 +60,8 @@ class AccountStatusReport(models.Model):
 
     def _select(self):
         return """
-          SELECT AM.NAME,
+          SELECT AM.ID, 
+                AM.NAME,
                 AM.COMPANY_ID,
                 AM.CURRENCY_ID,
                 AM.PARTNER_ID,
