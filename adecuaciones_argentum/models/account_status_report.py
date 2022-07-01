@@ -90,7 +90,7 @@ class AccountStatusReport(models.Model):
                             NULL AS L10N_DO_FISCAL_NUMBER,
                             C.DATE_DEADLINE AS INVOICE_DATE,
                             C.FIRST_INVOICE_DATE AS INVOICE_DATE_DUE, 
-                            'Draft' AS STATE,
+                            'draft' AS STATE,
                             'in_lead' AS MOVE_TYPE,
                             FIRST_INVOICE_AMOUNT AS AMOUNT_UNTAXED_SIGNED,
                             0 AS AMOUNT_TAX_SIGNED,
