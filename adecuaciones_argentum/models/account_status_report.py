@@ -30,6 +30,7 @@ class AccountStatusReport(models.Model):
             ('in_refund', 'Nota de Débito'),
             ('out_receipt', 'Recibo de Venta'),
             ('in_receipt', 'Recibo de Compra'),
+            ('in_lead', 'Oportunidad'),
         ], string='Tipo', readonly=True)
     
     company_id = fields.Many2one(comodel_name='res.company', string=u'Compañia',readonly=True)
@@ -53,48 +54,49 @@ class AccountStatusReport(models.Model):
         ], string="Estado de Pago",readonly=True)
     journal_id = fields.Many2one('account.journal', string='Diario', readonly=True)
 
-    def _select(self):
-        return """
-          SELECT AM.ID, 
-                AM.NAME,
-                AM.COMPANY_ID,
-                AM.CURRENCY_ID,
-                AM.PARTNER_ID,
-                AM.L10N_LATAM_DOCUMENT_TYPE_ID,
-                AM.L10N_DO_FISCAL_NUMBER,
-                AM.INVOICE_DATE,
-                AM.INVOICE_DATE_DUE,
-                AM.STATE,
-                AM.MOVE_TYPE,
-                AM.AMOUNT_UNTAXED_SIGNED,
-                AM.AMOUNT_TAX_SIGNED,
-                AM.AMOUNT_TOTAL_SIGNED,
-                AM.PAYMENT_STATE,
-                AM.JOURNAL_ID
-        """
-
-    def _from(self):
-        return """
-            FROM ACCOUNT_MOVE AS AM
-        """
-
-    def _join(self):
-        return """
-        """
-
-    def _where(self):
-        return """
-                   WHERE AM.MOVE_TYPE in ('in_invoice','out_invoice')
-                """
-
     def init(self):
         tools.drop_view_if_exists(self._cr, self._table)
         self._cr.execute("""
             CREATE OR REPLACE VIEW %s AS (
-                %s
-                %s
-                %s
-                %s
-            )
-        """ % (self._table, self._select(), self._from(), self._join(), self._where())
-        )
+
+                SELECT ROW_NUMBER() OVER (ORDER BY INVOICE_DATE) AS ID,
+                    REPORT.*
+                FROM
+                    (SELECT AM.NAME,
+                            AM.COMPANY_ID,
+                            AM.CURRENCY_ID,
+                            AM.PARTNER_ID,
+                            AM.L10N_LATAM_DOCUMENT_TYPE_ID,
+                            AM.L10N_DO_FISCAL_NUMBER,
+                            AM.INVOICE_DATE,
+                            AM.INVOICE_DATE_DUE,
+                            AM.STATE,
+                            AM.MOVE_TYPE,
+                            AM.AMOUNT_UNTAXED_SIGNED,
+                            AM.AMOUNT_TAX_SIGNED,
+                            AM.AMOUNT_TOTAL_SIGNED,
+                            AM.PAYMENT_STATE,
+                            AM.JOURNAL_ID
+                        FROM ACCOUNT_MOVE AS AM
+                        WHERE AM.MOVE_TYPE in ('in_invoice',
+                                                                                                                        'out_invoice')
+                        UNION 
+                        
+                        SELECT NULL AS NAME,
+                            C.COMPANY_ID,
+                            73 AS CURRENCY_ID,
+                            C.PARTNER_ID,
+                            NULL AS L10N_LATAM_DOCUMENT_TYPE_ID,
+                            NULL AS L10N_DO_FISCAL_NUMBER,
+                            C.DATE_DEADLINE AS INVOICE_DATE,
+                            C.FIRST_INVOICE_DATE AS INVOICE_DATE_DUE, 
+                            'Draft' AS STATE,
+                            'in_lead' AS MOVE_TYPE,
+                            FIRST_INVOICE_AMOUNT AS AMOUNT_UNTAXED_SIGNED,
+                            0 AS AMOUNT_TAX_SIGNED,
+                            0 AS AMOUNT_TOTAL_SIGNED,
+                            'not_paid' AS PAYMENT_STATE,
+                            NULL AS JOURNAL_ID
+                        FROM CRM_LEAD C
+                        WHERE STAGE_ID in (3) ) REPORT )
+        """)
