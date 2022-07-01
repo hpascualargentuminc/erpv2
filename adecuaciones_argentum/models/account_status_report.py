@@ -13,7 +13,7 @@ class AccountStatusReport(models.Model):
 
     name = fields.Char(u'Número de Comprobante',readonly="True")
     account_move_id = fields.Many2one('account.move', string='Factura Relacionada', readonly=True)
-    lead_id = fields.Many2one('crm.lead', 'Oportunidad Asociada', readonly=True=True)
+    lead_id = fields.Many2one('crm.lead', 'Oportunidad Asociada', readonly=True)
     partner_id = fields.Many2one('res.partner', readonly=True,string="Empresa")
     invoice_date = fields.Date(string='Fecha de Factura', readonly=True)
     invoice_date_due = fields.Date(string='Fecha de Vencimiento', readonly=True)
