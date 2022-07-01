@@ -99,4 +99,4 @@ class AccountStatusReport(models.Model):
                             NULL AS JOURNAL_ID
                         FROM CRM_LEAD C
                         WHERE STAGE_ID in (3) ) REPORT )
-        """)
+        """ % (self._table))
