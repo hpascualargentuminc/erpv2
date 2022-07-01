@@ -15,7 +15,7 @@
 				<filter name="unpaid" string="No Pagado" domain="[('payment_state', 'in', ('not_paid', 'partial'))]"/>
 				<filter name="paid" string="Pagado" domain="[('payment_state', 'in', ('in_payment', 'paid'))]"/>
 				<separator/>  
-				<filter name="only_invoice_lead" string="Solo Facturas y Oportunidades" domain="['|', ('journal_id.name', 'ilike', 'Factura'), ('journal_id', '=', 'none')]"/>
+				<filter name="only_invoice_lead" string="Solo Facturas y Oportunidades" domain="['|', ('journal_id.name', 'ilike', 'Factura'), ('journal_id', '=', False)]"/>
 				
             </search>
         </field>
