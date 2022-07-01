@@ -12,6 +12,8 @@ class AccountStatusReport(models.Model):
     _rec_name = 'id'
 
     name = fields.Char(u'Número de Comprobante',readonly="True")
+    account_move_id = fields.Many2one('account.move', string='Factura Relacionada', readonly=True)
+    lead_id = fields.Many2one('crm.lead', 'Oportunidad Asociada', readonly=True=True)
     partner_id = fields.Many2one('res.partner', readonly=True,string="Empresa")
     invoice_date = fields.Date(string='Fecha de Factura', readonly=True)
     invoice_date_due = fields.Date(string='Fecha de Vencimiento', readonly=True)
@@ -62,7 +64,9 @@ class AccountStatusReport(models.Model):
                 SELECT ROW_NUMBER() OVER (ORDER BY INVOICE_DATE) AS ID,
                     REPORT.*
                 FROM
-                    (SELECT AM.NAME,
+                    (SELECT AM.ID as ACCOUNT_MOVE_ID,
+                            NULL as LEAD_ID,
+                            AM.NAME,
                             AM.COMPANY_ID,
                             AM.CURRENCY_ID,
                             AM.PARTNER_ID,
@@ -82,7 +86,10 @@ class AccountStatusReport(models.Model):
                                                                                                                         'out_invoice')
                         UNION 
                         
-                        SELECT NULL AS NAME,
+                        SELECT 
+                            NULL as ACCOUNT_MOVE_ID,
+                            C.ID as LEAD_ID,
+                            NULL AS NAME,
                             C.COMPANY_ID,
                             73 AS CURRENCY_ID,
                             C.PARTNER_ID,
