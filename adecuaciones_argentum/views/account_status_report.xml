@@ -46,7 +46,7 @@
         <field name="model">report.account.analytics</field>
 		<field name="arch" type="xml">
 			<pivot string="Invoice/Oportunities Analytics" sample="1">
-                <field name="invoice_date_due" interval="month" type="c"/>
+                <field name="invoice_date_due" interval="month" type="col"/>
 				<field name="move_type" type="row"/>
                 <field name="amount_untaxed_signed" type="measure"/>
 			</pivot>
