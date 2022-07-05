@@ -32,7 +32,7 @@ class AccountStatusReport(models.Model):
             ('in_refund', 'Nota de Débito'),
             ('out_receipt', 'Recibo de Venta'),
             ('in_receipt', 'Recibo de Compra'),
-            ('in_lead', 'Oportunidad'),
+            ('op_lead', 'Oportunidad'),
         ], string='Tipo', readonly=True)
     
     company_id = fields.Many2one(comodel_name='res.company', string=u'Compañia',readonly=True)
@@ -98,7 +98,7 @@ class AccountStatusReport(models.Model):
                             C.DATE_DEADLINE AS INVOICE_DATE,
                             C.FIRST_INVOICE_DATE AS INVOICE_DATE_DUE, 
                             'draft' AS STATE,
-                            'in_lead' AS MOVE_TYPE,
+                            'op_lead' AS MOVE_TYPE,
                             FIRST_INVOICE_AMOUNT AS AMOUNT_UNTAXED_SIGNED,
                             0 AS AMOUNT_TAX_SIGNED,
                             0 AS AMOUNT_TOTAL_SIGNED,
