@@ -10,7 +10,7 @@ class Lead(models.Model):
     first_invoice_date = fields.Date(string="Fecha de la 1ra Factura")
     first_invoice_amount = fields.Monetary(string="Total de la 1ra Factura", currency_field='company_currency')
     
-    @api.onchange('date_deadline')
+    @api.onchange('date_deadline','expected_revenue')
     def _update_data_opportunity(self):
         for record in self:
             invoice_date = record.first_invoice_date
