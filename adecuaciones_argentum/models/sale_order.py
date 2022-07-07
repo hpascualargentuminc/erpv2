@@ -18,7 +18,9 @@ class SaleOrder(models.Model):
     @api.onchange('first_invoice_perc','state','payment_term_id')
     def _update_data_on_opportunity(self):
         for order in self:
-            if order.opportunity_id and order.payment_term_id:
+            if not order.opportunity_id.date_deadline:
+                raise ValidationError("Antes de actualizar este elemento, debe establecer la Fecha de Cierre Esperado en la Oportunidad")
+            elif order.payment_term_id:
                 first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=order.opportunity_id.date_deadline)[0][0]
                 first_invoice_amount = order.opportunity_id.expected_revenue * (order.first_invoice_perc/100)
                 order.opportunity_id.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
