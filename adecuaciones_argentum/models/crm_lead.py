@@ -28,6 +28,6 @@ class Lead(models.Model):
             #opt.first_invoice_date = fid
             #opt.first_invoice_amount = fia
             _logger.info(f"UPD: first_invoice_date: {opt.first_invoice_date} | first_invoice_amount: {opt.first_invoice_amount}")
-            opt.sudo().write({'first_invoice_date': fid, 'first_invoice_amount': fia})
+            opt.sudo().update({'first_invoice_date': fid, 'first_invoice_amount': fia})
             # break
             
