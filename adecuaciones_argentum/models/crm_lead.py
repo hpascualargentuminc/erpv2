@@ -12,20 +12,18 @@ class Lead(models.Model):
     
     @api.onchange('date_deadline')
     def _update_data_on_opportunity(self):
-        for opp in self:
-            # _logger.info(f"Order IDs: {opp.order_ids}")
-            for order in opp.order_ids:
-                if opp.date_deadline:
-                    order._update_data_on_opportunity()
-                # _logger.info(f"Order state: {order.state}")
-                # _logger.info(f"Opp Datedeadline: {opp.date_deadline}")
-                # _logger.info(f"Order Payment Term: {order.payment_term_id}")
-                # if order.state not in ('cancel') and opp.date_deadline and order.payment_term_id:
-                #     first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opp.date_deadline)[0][0]
-                #     first_invoice_amount = opp.expected_revenue * (order.first_invoice_perc/100)
-                #     _logger.info(f"first_invoice_date: {first_invoice_date} | first_invoice_amount: {first_invoice_amount}")
-                #     #opp.first_invoice_date = first_invoice_date
-                #     #opp.first_invoice_amount = first_invoice_amount
-                #     opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
-                #     # break
+        # for opp in self:
+        _logger.info(f"Order IDs: {self.order_ids}")
+        for order in self.order_ids:
+            _logger.info(f"Order state: {order.state}")
+            _logger.info(f"Opp Datedeadline: {self.date_deadline}")
+            _logger.info(f"Order Payment Term: {order.payment_term_id}")
+            if order.state not in ('cancel') and self.date_deadline and order.payment_term_id:
+                first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=self.date_deadline)[0][0]
+                first_invoice_amount = self.expected_revenue * (order.first_invoice_perc/100)
+                _logger.info(f"first_invoice_date: {first_invoice_date} | first_invoice_amount: {first_invoice_amount}")
+                self.first_invoice_date = first_invoice_date
+                self.first_invoice_amount = first_invoice_amount
+                #opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
+                # break
             
