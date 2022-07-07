@@ -22,8 +22,8 @@ class Lead(models.Model):
                     first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opp.date_deadline)[0][0]
                     first_invoice_amount = opp.expected_revenue * (order.first_invoice_perc/100)
                     _logger.info(f"first_invoice_date: {first_invoice_date} | first_invoice_amount: {first_invoice_amount}")
-                    opp.first_invoice_date = first_invoice_date
-                    opp.first_invoice_amount = first_invoice_amount
-                    # opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
+                    #opp.first_invoice_date = first_invoice_date
+                    #opp.first_invoice_amount = first_invoice_amount
+                    opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
                     # break
             
