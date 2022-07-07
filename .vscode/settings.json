@@ -9,14 +9,14 @@
     },
     "python.analysis.extraPaths": [
       "${workspaceRoot}/addons/",
-      "/Users/cjimenez/desarrollo/odooEnt/odoo-15.0e",
-      "/Users/cjimenez/desarrollo/odooEnt/odoo-15.0e"
+      "/Users/hpascual/desarrollo/odooEnt/odoo-15.0e",
+      "/Users/hpascual/desarrollo/odooEnt/odoo-15.0e"
     ],
   
     "python.autoComplete.extraPaths": [
       "${workspaceRoot}/addons/",
-      "/Users/cjimenez/desarrollo/odooEnt/odoo-15.0e",
-      "/Users/cjimenez/desarrollo/odooEnt/odoo-15.0e"
+      "/Users/hpascual/desarrollo/odooEnt/odoo-15.0e",
+      "/Users/hpascual/desarrollo/odooEnt/odoo-15.0e"
     ],
   
     "python.analysis.autoImportCompletions": true,
