@@ -25,5 +25,5 @@ class Lead(models.Model):
                     opp.first_invoice_date = first_invoice_date
                     opp.first_invoice_amount = first_invoice_amount
                     # opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
-                    break
+                    # break
             
