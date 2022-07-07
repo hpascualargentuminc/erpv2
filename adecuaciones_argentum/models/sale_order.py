@@ -36,6 +36,7 @@ class SaleOrder(models.Model):
             order.update({'base_amount_untaxed': base_amount_untaxed,})
             if order.opportunity_id:
                 order.opportunity_id.update({'expected_revenue': base_amount_untaxed,})
+                order._update_data_on_opportunity()
 
     def action_preview_lead(self):
         action = self.env["ir.actions.actions"]._for_xml_id("crm.crm_lead_opportunities")
