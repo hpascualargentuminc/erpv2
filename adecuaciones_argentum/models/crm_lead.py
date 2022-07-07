@@ -19,11 +19,11 @@ class Lead(models.Model):
                 _logger.info(f"Opp Datedeadline: {opt.date_deadline}")
                 _logger.info(f"Order Payment Term: {order.payment_term_id}")
                 if order.state not in ('cancel') and opt.date_deadline and order.payment_term_id:
-                    first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opt.date_deadline)[0][0]
-                    first_invoice_amount = opt.expected_revenue * (order.first_invoice_perc/100)
-                    _logger.info(f"first_invoice_date: {first_invoice_date} | first_invoice_amount: {first_invoice_amount}")
-                    opt.first_invoice_date = first_invoice_date
-                    opt.first_invoice_amount = first_invoice_amount
+                    fid = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opt.date_deadline)[0][0]
+                    fia = opt.expected_revenue * (order.first_invoice_perc/100)
+                    _logger.info(f"first_invoice_date: {fid} | first_invoice_amount: {fia}")
+                    opt.first_invoice_date = fid
+                    opt.first_invoice_amount = fia
                     _logger.info(f"UPD: first_invoice_date: {opt.first_invoice_date} | first_invoice_amount: {opt.first_invoice_amount}")
                     #opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
                     # break
