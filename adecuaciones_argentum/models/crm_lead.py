@@ -16,7 +16,7 @@ class Lead(models.Model):
             fid = record.first_invoice_date
             fia = record.first_invoice_amount
             _logger.info(f"Order IDs: {self.order_ids}")
-            for order in opt.order_ids:
+            for order in record.order_ids:
                 _logger.info(f"Order state: {order.state}")
                 _logger.info(f"Opp Datedeadline: {record.date_deadline}")
                 _logger.info(f"Order Payment Term: {order.payment_term_id}")
