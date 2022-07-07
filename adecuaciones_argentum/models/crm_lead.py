@@ -15,7 +15,8 @@ class Lead(models.Model):
         for opp in self:
             for order in opp.order_ids:
                 if order.state not in ('cancel') and opp.date_deadline and order.payment_term_id:
-                    opp.first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opp.date_deadline)[0][0]
-                    opp.first_invoice_amount = opp.expected_revenue * (order.first_invoice_perc/100)
+                    first_invoice_date = order.payment_term_id.compute(value=order.base_amount_untaxed, date_ref=opp.date_deadline)[0][0]
+                    first_invoice_amount = opp.expected_revenue * (order.first_invoice_perc/100)
+                    opp.sudo().write({'first_invoice_date': first_invoice_date, 'first_invoice_amount': first_invoice_amount})
                     break
             
