@@ -29,3 +29,8 @@ class AccountMove(models.Model):
             result.append((record.id, record_name))
 
         return result 
+    
+    @api.depends('journal_id', 'date')
+    def _compute_highest_name(self):
+        for record in self:
+            record.highest_name = record._get_last_sequence()
