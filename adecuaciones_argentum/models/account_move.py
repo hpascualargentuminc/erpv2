@@ -30,7 +30,18 @@ class AccountMove(models.Model):
 
         return result 
     
-    @api.depends('journal_id', 'date')
-    def _compute_highest_name(self):
-        for record in self:
-            record.highest_name = record._get_last_sequence()
+    # # METODOS SOBRE-ESCRITOS PARA RESOLVER ISSUES DE ODOO
+    # @api.depends('journal_id', 'date')
+    # def _compute_highest_name(self):
+    #     for record in self:
+    #         record.highest_name = record._get_last_sequence()
+            
+    # @api.onchange('journal_id')
+    # def _onchange_journal(self):
+    #     if self.journal_id and self.journal_id.currency_id:
+    #         new_currency = self.journal_id.currency_id
+    #         if new_currency != self.currency_id:
+    #             self.currency_id = new_currency
+    #             self._onchange_currency()
+    #     if self.state == 'draft' and self._get_last_sequence() and self.name and self.name != '/':
+    #         self.name = '/'
