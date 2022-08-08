@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
     @api.onchange('first_invoice_perc','payment_term_id')
     def _update_data_on_opportunity(self):
         for order in self:
-            if not order.opportunity_id.date_deadline and order.stage_id.display_name in ('CALIFICACIÓN','CIERRE'):
+            if not order.opportunity_id.date_deadline and order.opportunity_id.stage_id.display_name in ('CALIFICACIÓN','CIERRE'):
                 if order.create_date:
                     raise ValidationError("Antes de actualizar este elemento, debe establecer la Fecha de Cierre Esperado en la Oportunidad")
             elif order.payment_term_id:
