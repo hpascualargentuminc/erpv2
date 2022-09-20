@@ -16,7 +16,8 @@
         'report/report_invoice.xml',
         'views/project_task_views.xml',
         'views/crm_lead_views.xml',
-        'views/account_status_report.xml'
+        'views/account_status_report.xml',
+        'views/res_partner_views.xml'
     ],
     
 }
