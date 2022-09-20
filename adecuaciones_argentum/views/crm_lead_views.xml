@@ -8,7 +8,7 @@
             <!-- Datos del Primer Pago -->
             <xpath expr="//group[@name='Misc']" position="after">
                 <group name="first_payment" string="Datos del 1er Pago">
-                    <field name="first_invoice_date" groups="hr.group_hr_manager"/>
+                    <field name="first_invoice_date"/>
                     <field name="first_invoice_amount"/>
                 </group>
             </xpath>
