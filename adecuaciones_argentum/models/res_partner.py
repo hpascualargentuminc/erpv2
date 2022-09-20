@@ -5,7 +5,7 @@
 from odoo import models, fields
 
 
-class ResPartner(models.Model):
+class Partner(models.Model):
     _inherit = 'res.partner'
 
     rrhh_notes = fields.Html(string='Notas RRHH')
