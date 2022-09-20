@@ -7,7 +7,7 @@
 		<field name="arch" type="xml">
 			<!-- Notas de RRHH -->
 			<xpath expr="//page[@name='internal_notes']" position="after">
-				<page name='rrhh_notes' string="Notas RRHH">
+				<page name='rrhh_notes' string="Notas RRHH" groups="hr.group_hr_manager">
 					<field name="rrhh_notes" options="{'height': 70}" placeholder="Notas internas de RRHH..."/>
                 </page>
 			</xpath>
