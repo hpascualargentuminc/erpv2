@@ -8,4 +8,4 @@ from odoo import models, fields
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    # rrhh_notes = fields.Text(string='Notas RRHH')
+    rrhh_notes = fields.Text(string='Notas RRHH')
